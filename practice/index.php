@@ -16,6 +16,10 @@ $quarters = 34;
 
 # Add up how much money is in the piggy bank
 $total = ($pennies * $penny_value) + ($nickels * $nickel_value) + ($dimes * $dime_value) + ($quarters * $quarter_value);
+require 'index-view.php';
+
+
+
 # BEFORE
 $phrases = [
     'hola',
@@ -35,8 +39,8 @@ foreach ($phrases as $value) {
 }
 
 # For the purpose of these examples, we can "hard-code" $age to some value
-$age = 14;
-$category;
+$age = 20;
+$category = 'child';
 
 if ($age > 18) {
     $category = 'adult';
@@ -44,6 +48,5 @@ if ($age > 18) {
 
 # Use var_dump to test the results
 var_dump($category);
-
-
-require 'index-view.php';
+$result = 40;
+var_dump($result < 20 or $result >= 40);
