@@ -8,6 +8,16 @@
         body {
             text-align: center;
         }
+
+        h1,
+        h2 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            color: #999;
+        }
     </style>
 </head>
 
