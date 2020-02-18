@@ -4,20 +4,32 @@
 <head>
     <title>e15 Project 1</title>
     <meta charset="utf-8">
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
     <h1>e15 Project 1</h1>
-    <p><?php echo($result1); ?>
-    </p>
-    <p><?php echo($result2); ?>
-    </p>
-    <p><?php echo($result3); ?>
-    </p>
-    <p><?php echo($result4); ?>
-    </p>
-    <p><?php echo($result5); ?>
-    </p>
+    <form method="POST" action="process.php">
+        <label for="inputString">Enter a String</label>
+        <input type='text' id='inputString' name='inputString'>
+        <button type="submit">Process</button>
+    </form>
+
+    <?php if (isset($results)) : ?>
+    <h2>Is Palindrome?</h2>
+    <?=$isPalindrome ?>
+
+    <h2>Does it have vowels?</h2>
+    <?=$hasVowels ?>
+
+    <h2>How many vowels does it have?</h2>
+    <?=$vowelCount ?>
+    <?php endif ?>
+
 </body>
 
 </html>
