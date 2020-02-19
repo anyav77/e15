@@ -38,6 +38,9 @@
 
     <h2>How many vowels does it have?</h2>
     <?=$vowelCount ?>
+
+    <h2>Letter Shift</h2>
+    <?=$letterShift ?>
     <?php endif ?>
 
 </body>
