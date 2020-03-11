@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index($title = null)
     {
-        return 'Here are all the books!';
+        //return 'Here are all the books!';
+        return view('books.index')->with(['title' => $title, 'books'=>[]]);
     }
 
     public function show($title = null)
@@ -18,7 +19,9 @@ class BookController extends Controller
     
         # Return a view to show the book
         # Include the book data
-        return 'Results for the book: '.$title;
+        //return 'Results for the book: '.$title;
+        $bookFound = false;
+        return view('books.show')->with(['title' => $title, 'bookFound' => $bookFound]);
     }
 
     public function filter($category, $subcategory = null)
