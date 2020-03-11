@@ -1,28 +1,16 @@
-<!doctype html>
-<html lang='en'>
+@extends('layouts.master')
 
-<head>
-    <title>hjhk</title>
-    <meta charset='utf-8'>
-    <link href='/css/bookmark.css' type='text/css' rel='stylesheet'>
-</head>
+@section('title')
+Book library...
+@endsection
 
-<body>
+@section('content')
+@if(count($books)==0)
+No books have been added yet
 
-    <header>
-        <a href='/'><img src='/images/bookmark-logo@2x.png' id='logo' alt='Bookmark Logo'></a>
-    </header>
-
-    <section>
-        @foreach($books as $book)
-        {{ $book['title']}}
-        @endforeach
-    </section>
-
-    <footer>
-        &copy; {{ date('Y') }}
-    </footer>
-
-</body>
-
-</html>
+@else
+@foreach ($books as $book)
+{{ $book['title']}}
+@endforeach
+@endif
+@endsection

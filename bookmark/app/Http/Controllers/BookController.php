@@ -6,10 +6,16 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index($title = null)
+    /**
+     * Get /books
+     */
+    public function index()
     {
         //return 'Here are all the books!';
-        return view('books.index')->with(['title' => $title, 'books'=>[]]);
+        return view('books.index')->with(['books'=>[
+            ['title' => "War and Peace" ],
+            ['title' => "The Great Gatsby" ]
+        ]]);
     }
 
     public function show($title = null)
