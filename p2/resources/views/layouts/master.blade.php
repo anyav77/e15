@@ -2,7 +2,7 @@
 <html lang='en'>
 
 <head>
-    <title>@yield('title', 'Bookmark')</title>
+    <title>@yield('title', 'EFN')</title>
     <meta charset='utf-8'>
 
     <link href='/css/main.css' rel='stylesheet'>
