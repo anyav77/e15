@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function welcome()
+    public function welcome($title = null)
     {
         return view('welcome');
+        
+        //return view('books.edit');
     }
 }
