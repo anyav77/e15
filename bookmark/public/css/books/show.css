@@ -1,0 +1,12 @@
+section#main {}
+
+.description {
+    width: 500px;
+    margin: auto;
+    padding-bottom: 10px;
+    text-align: justify;
+}
+
+img.cover {
+    width: 150px;
+}
