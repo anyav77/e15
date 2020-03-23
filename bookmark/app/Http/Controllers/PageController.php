@@ -11,6 +11,10 @@ class PageController extends Controller
      */
     public function welcome()
     {
+
+        $searchTerms = session('searchTerms', null);
+        $searchType = session('searchType', null);
+        $searchResults = session('searchResults', null);
         # Return our welcome page
         # If there is data stored in the session as the results of doing a search
         # that data will be extracted from the session and passed to the view

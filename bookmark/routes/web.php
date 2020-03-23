@@ -23,8 +23,13 @@ Route::get('/support', 'PageController@support');
 
 
 # Books
+Route::get('/books/create', 'BookController@create');
+Route::post('/books', 'BookController@store');
+
 Route::get('/books', 'BookController@index');
 Route::get('/books/{slug?}', 'BookController@show');
+
+Route::get('/search', 'BookController@search');
 
 Route::get('/list', 'BookController@list');
 
