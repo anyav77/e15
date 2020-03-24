@@ -1,5 +1,4 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PageController@welcome');
+Route::get('/calculate', 'SellerController@calculate');

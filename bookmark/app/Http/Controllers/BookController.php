@@ -12,10 +12,10 @@ class BookController extends Controller
 * GET /books/create
 * Display the form to add a new book
 */
-public function create(Request $request) 
-{
-    return view('books.create');
-}
+    public function create(Request $request) 
+    {
+        return view('books.create');
+    }
 
 
 /**

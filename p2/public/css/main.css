@@ -9,3 +9,4 @@ section{border: 1px solid #999; padding: 20px; margin-bottom: 5px; background-co
 fieldset{width: 380px; text-align: left;}
 h2 {padding-bottom: 15px; text-transform: uppercase;}
 label {width: 150px;}
+ul li{list-style-type: none;}
