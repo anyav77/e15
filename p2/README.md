@@ -8,6 +8,7 @@
 <https://www.php.net/manual/en/function.round.php>
 <https://www.php.net/manual/en/language.types.integer.php>
 <https://www.php.net/manual-lookup.php?pattern=integer&scope=quickref>
+<https://www.toptal.com/designers/htmlarrows/punctuation/asterisk/>
 
 ## Notes for instructor
 Ultimately, I would like to combine the price and product title in a dropdown format.  The information will be pulled from the database. I'm also planning to incorporate a graph, to represent sales trends/best performing products.
