@@ -17,24 +17,26 @@
         </label>
         <select name="commisionRate" id="commisionRate">
             <option value="50">50%</option>
-            <option value="30">30%</option>
+            <option value="30" {{ (old('commisionRate') == '30' or $commisionRate=='30') ? 'selected' : ''}}>30%
+            </option>
         </select>
     </fieldset>
     <fieldset>
         <label for="salesNumber">
-            Number of sales:
+            Number of sales: &#42;
         </label>
         <input type="text" name="salesNumber" id="salesNumber" value="{{old('salesNumber', $salesNumber)}}">
     </fieldset>
     <fieldset>
         <label for="productPrice">
-            Price ($):
+            Price ($): &#42;
         </label>
         <input name="productPrice" id="productPrice" value="{{old('productPrice', $productPrice)}}">
     </fieldset>
     <fieldset>
         <label for='roundUp'> Round Up?</label>
-        <input type='checkbox' name='roundUp' id='roundUp' value='roundUp'>
+        <input type='checkbox' name='roundUp' id='roundUp' value='roundUp'
+            {{ (old('roundUp') == 'roundUp' or $roundUp=='roundUp') ? 'checked' : ''}}>
     </fieldset>
 
     <input type='submit' class='btn btn-primary' value='Submit'>
@@ -49,7 +51,8 @@
 </form>
 @if(!is_null($commissions))
 <div class='results alert alert-primary'>
-    You have earned {{$commissions}} USD.
+    You have earned {{$commissions}}
+    USD{{ (old('productName') != null or $productName != null) ? ' for '.$productName : ''}}.
 </div>
 @endif
 @endsection
