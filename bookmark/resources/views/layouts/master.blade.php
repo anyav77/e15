@@ -32,7 +32,7 @@
     </section>
 
     <footer>
-        &copy; Bookmark
+        &copy; Bookmark {{config('mail.supportEmail')}}
     </footer>
 
 </body>
