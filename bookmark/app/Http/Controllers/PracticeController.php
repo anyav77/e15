@@ -9,6 +9,12 @@ use Str;
 class PracticeController extends Controller
 {
     # Start Week 9 Assignment
+    public function practice19()
+    {
+        $book = Book::where('author', '=', 'Dr. Seuss')->get();
+        $book->delete();
+        dump('Book deleted.');
+    }
     public function practice18()
     {
         # Find any books by the author “J.K. Rowling” and update the author name to be “JK Rowling”
