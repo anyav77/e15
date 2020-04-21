@@ -13,7 +13,13 @@
 </head>
 
 <body>
-
+    @if(count($errors) > 0)
+    <ul class='alert alert-danger error'>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+    @endif
     <header>
         <a href='/'><img src='/images/bookmark-logo@2x.png' id='logo' alt='bookmark Logo'></a>
 
@@ -21,6 +27,7 @@
             <ul>
                 <li><a href='/'>Home</a></li>
                 <li><a href='/books'>All Books</a></li>
+                <li><a href='/books/create'>Add a Book</a></li>
                 <li><a href='/list'>Your list</a></li>
                 <li><a href='/support'>Support</a></li>
             </ul>

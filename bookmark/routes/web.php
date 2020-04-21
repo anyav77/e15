@@ -5,9 +5,8 @@
  */
 Route::any('/practice/{n?}', 'PracticeController@index');
 
-# Debug route used to 
+# Debug route used to
 Route::get('/debug', function () {
-
     $debug = [
         'Environment' => App::environment(),
     ];
@@ -53,19 +52,30 @@ Route::get('/', 'PageController@welcome');
 Route::get('/support', 'PageController@support');
 
 
-# Books
+# Create a Book
 Route::get('/books/create', 'BookController@create');
 Route::post('/books', 'BookController@store');
 
+# Update a Book
+Route::get('/books/{slug}/edit', 'BookController@edit');
+Route::put('/books/{slug}', 'BookController@update');
+
+# Delete a Book
+Route::get('/books/{slug}/confirm', 'BookController@confirm');
+Route::delete('/books/{slug}/', 'BookController@destroy');
+
+
+# Show all books
 Route::get('/books', 'BookController@index');
+# Show a book
 Route::get('/books/{slug?}', 'BookController@show');
 
+# Misc
 Route::get('/search', 'BookController@search');
-
 Route::get('/list', 'BookController@list');
 
 # Example for debugging
-Route::get('/example', function(){
+Route::get('/example', function () {
     //dump(config('mail'));
     //dump(config('mail.host'));
 });

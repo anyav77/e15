@@ -8,6 +8,56 @@ use Str;
 
 class PracticeController extends Controller
 {
+    # Start Week 10 Examples
+    public function practice22()
+    {
+        // $books = Book::where('author', 'F. Scott Fitzgerald')->get();
+        // dump($books->first());
+        // $results = Book::where('author', 'F. Scott Fitzgerald')->first();
+        // dump($results);
+        //$books = Book::get();
+        // $books = Book::orderBy('id', 'desc')->get();
+        // $book = $books->first();
+        // dump($books);
+        // $results = Book::where('author', 'F. Scott Fitzgerald')->get();
+        // dump($results);
+        $books = Book::all();
+        echo $books;
+    }
+    public function practice21()
+    {
+        $books = Book::all();
+        # This will output a JSON string
+        echo $books;
+
+        $books = Book::all();
+        # loop through the Collection and access just the data
+        foreach ($books as $book) {
+            dump($book['title']);
+        }
+
+        $books = Book::all();
+        foreach ($books as $book) {
+            dump($book->title);
+        }
+    }
+
+    public function practice20()
+    {
+        # Yields a collection of multiple books
+        $results = Book::all();
+        $results = Book::orderBy('title')->get();
+
+        # Should match 1 book; yields a Collection of 1 Book
+        $results = Book::where('author', 'F. Scott Fitzgerald')->get();
+
+        # Should match 0 books; yields an empty Collection
+        $results = Book::where('author', 'Virginia Wolf')->get();
+
+        # Even though we limit it to 1 book, we're using the `get` fetch method so we get a Collection (of 1 Book)
+        $results = Book::limit(1)->get();
+    }
+    # End Week 10 Exaples
     # Start Week 9 Assignment
     public function practice19()
     {
@@ -23,9 +73,9 @@ class PracticeController extends Controller
         $books = Book::where('author', 'LIKE', '%Rowling%')->get();
         //dump($books->toArray());
         if (!$books) {
-                dump("Book not found, can not update.");
+            dump("Book not found, can not update.");
         } else {
-            foreach($books as $book){
+            foreach ($books as $book) {
                 # Delete the books
                 $book->delete();
                 dump('Deletion complete; check the database to see if it worked...');
@@ -40,9 +90,9 @@ class PracticeController extends Controller
         $books = Book::where('author', '=', 'J.K. Rowling')->get();
         dump($books->toArray());
         if (!$books) {
-                dump("Book not found, can not update.");
+            dump("Book not found, can not update.");
         } else {
-            foreach($books as $book){
+            foreach ($books as $book) {
                 # Change some properties
                 $book->author = 'JK Rowling';
                 # Save the changes

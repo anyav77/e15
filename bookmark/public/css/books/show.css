@@ -3,10 +3,12 @@ section#main {}
 .description {
     width: 500px;
     margin: auto;
+    margin-top: 20px;
     padding-bottom: 10px;
     text-align: justify;
 }
 
 img.cover {
     width: 150px;
+    margin-bottom: 25px;
 }

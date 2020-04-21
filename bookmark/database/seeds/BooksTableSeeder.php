@@ -46,5 +46,22 @@ class BooksTableSeeder extends Seeder
             $book->save();
             $count--;
         }
+
+        $faker = Faker\Factory::create();
+
+        for ($i = 0; $i < 5; $i++) {
+            $book = new Book();
+            $title = $faker->words(rand(3, 6), true);
+            $book->title = Str::title($title);
+            $book->slug = Str::slug($title, '-');
+            $book->author = $faker->firstName . ' ' . $faker->lastName;
+            $book->published_year = $faker->year;
+            $book->cover_url = 'https://hes-bookmark.s3.amazonaws.com/cover-placeholder.png';
+            $book->info_url = 'https://en.wikipedia.org/wiki/' . $slug;
+            $book->purchase_url = 'https://www.barnesandnoble.com/' . $slug;
+            $book->description = $faker->paragraphs(1, true);
+
+            $book->save();
+        }
     }
 }

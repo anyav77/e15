@@ -171,19 +171,15 @@ ul.inputs label {
     font-size: 1.2rem;
 }
 
-.btn {
+.btn,
+button {
     margin-top: 20px;
     font-size: 1.5rem;
 }
 
 .error {
     list-style-type: none;
-    color: #a94442;
-    text-align: left;
-    margin: 0;
-    padding: 0;
-    font-size: 1.2rem;
-    font-style: italic;
+    margin-top: 10px;
 }
 
 .globalFormError {
@@ -199,6 +195,7 @@ ul.inputs label {
 .details {
     font-size: 1.1rem;
     font-style: italic;
+    text-align: left;
 }
 
 
@@ -220,4 +217,15 @@ Misc
 
 .cf {
     *zoom: 1;
+}
+
+.flash-alert {
+    background-color: yellow;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
 }

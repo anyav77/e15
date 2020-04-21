@@ -2,23 +2,44 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+# Misc
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', 'PageController@welcome');
+Route::get('/about', 'PageController@about');
+Route::get('/contact', 'PageController@contact');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+# Register
+# Login
+# Account - Edit Details
+# Account - Social Stream
+# Account - Sales Dashboard
 
+# Wiki Home Page
+// Route::get('/wiki', 'WikiController@index');
+# Wiki add page
+//Route::get('/wiki/create', 'WikiController@create');
+//Route::post('/wiki', 'WikiController@store');
+# Wiki edit page
+//Route::get('/wiki/{id}/edit', 'WikiController@edit');
+//Route::post('/wiki', 'WikiController@store');
+
+# Forum - Home Page
+//Route::get('/forum', 'ForumController@index');
+# Forum - New Post
+//Route::get('/forum/create', 'ForumController@create');
+//Route::post('/forum', 'ForumController@store');
+# Forum - Update Post ?
+
+# Contact
+//Route::get('/contact/create', 'PageController@create');
+//Route::post('/contact', 'PageController@store');
+
+
+
+# Debug
 Route::get('/debug', function () {
-
     $debug = [
         'Environment' => App::environment(),
     ];
