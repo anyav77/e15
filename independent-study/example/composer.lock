@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6558f74828bca9ebecac73d90cea4b1a",
+    "content-hash": "d111e635241ebc4b243ad2426ef5517c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3803,6 +3803,61 @@
                 "test"
             ],
             "time": "2016-01-20T08:20:44+00:00"
+        },
+        {
+            "name": "imanghafoori/laravel-video",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imanghafoori1/laravel-video.git",
+                "reference": "a2e8544032166a4b018343c17598b19094dcced6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imanghafoori1/laravel-video/zipball/a2e8544032166a4b018343c17598b19094dcced6",
+                "reference": "a2e8544032166a4b018343c17598b19094dcced6",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.1|6.*|7.*",
+                "php": "7.2.*|7.3.*|7.4.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.9",
+                "orchestra/testbench": "~3.0"
+            },
+            "suggest": {
+                "imanghafoori/laravel-anypass": " Allows you login with any password in local environment.",
+                "imanghafoori/laravel-decorator": "Allows you to easily apply the decorator pattern.",
+                "imanghafoori/laravel-heyman": "It allows to write expressive code to authorize, validate and authenticate.",
+                "imanghafoori/laravel-masterpass": "You can easily set a master password without code change.",
+                "imanghafoori/laravel-terminator": "Gives you opportunity to refactor your controllers."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Iman\\Streamer\\StreamServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Iman\\Streamer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Iman Ghafoori",
+                    "email": "imanghafoori1@gmail.com"
+                }
+            ],
+            "description": "A laravel package to stream video content.",
+            "time": "2020-03-21T01:57:16+00:00"
         },
         {
             "name": "mockery/mockery",
