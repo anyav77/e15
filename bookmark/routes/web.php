@@ -51,28 +51,29 @@ Route::get('/example', function () {
 Route::get('/', 'PageController@welcome');
 Route::get('/support', 'PageController@support');
 
+Route::group(['middleware' => 'auth'], function () {
+    # Create a Book
+    Route::get('/books/create', 'BookController@create');
+    Route::post('/books', 'BookController@store');
 
-# Create a Book
-Route::get('/books/create', 'BookController@create');
-Route::post('/books', 'BookController@store');
+    # Update a Book
+    Route::get('/books/{slug}/edit', 'BookController@edit');
+    Route::put('/books/{slug}', 'BookController@update');
 
-# Update a Book
-Route::get('/books/{slug}/edit', 'BookController@edit');
-Route::put('/books/{slug}', 'BookController@update');
+    # Delete a Book
+    Route::get('/books/{slug}/confirm', 'BookController@confirm');
+    Route::delete('/books/{slug}/', 'BookController@destroy');
 
-# Delete a Book
-Route::get('/books/{slug}/confirm', 'BookController@confirm');
-Route::delete('/books/{slug}/', 'BookController@destroy');
+    # Show all books
+    Route::get('/books', 'BookController@index');
+    # Show a book
+    Route::get('/books/{slug?}', 'BookController@show');
 
+    # Misc
+    Route::get('/search', 'BookController@search');
+    Route::get('/list', 'BookController@list');
+});
 
-# Show all books
-Route::get('/books', 'BookController@index');
-# Show a book
-Route::get('/books/{slug?}', 'BookController@show');
-
-# Misc
-Route::get('/search', 'BookController@search');
-Route::get('/list', 'BookController@list');
 
 # Example for debugging
 Route::get('/example', function () {
@@ -83,3 +84,5 @@ Route::get('/example', function () {
 # This was an example route to show multiple parameters;
 # Not a feature we're actually building, so I'm commenting out
 # Route::get('/filter/{category}/{subcategory?}', 'BookController@filter');
+
+Auth::routes();

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Book;
+use App\Author;
 
 class BooksTableSeeder extends Seeder
 {
@@ -16,7 +17,6 @@ class BooksTableSeeder extends Seeder
         $book = new Book();
         $book->slug = 'the-martian';
         $book->title = 'The Martian';
-        $book->author = 'Anthony Weir';
         $book->published_year = 2011;
         $book->cover_url = 'https://hes-bookmark.s3.amazonaws.com/the-martian.jpg';
         $book->info_url = 'https://en.wikipedia.org/wiki/The_Martian_(Weir_novel)';
@@ -30,18 +30,28 @@ class BooksTableSeeder extends Seeder
         
         $count = count($books);
         foreach ($books as $slug => $bookData) {
+            # First, figure out the id of the author we want to associate with this book
+
+            # Extract just the last name from the book data...
+            # F. Scott Fitzgerald => ['F.', 'Scott', 'Fitzgerald'] => 'Fitzgerald'
+            $name = explode(' ', $bookData['author']);
+            $lastName = array_pop($name);
+
+            # Find that author in the authors table
+            $author_id = Author::where('last_name', '=', $lastName)->pluck('id')->first();
+
             $book = new Book();
     
             $book->created_at = Carbon\Carbon::now()->subDays($count)->toDateTimeString();
             $book->updated_at = Carbon\Carbon::now()->subDays($count)->toDateTimeString();
             $book->slug = $slug;
             $book->title = $bookData['title'];
-            $book->author = $bookData['author'];
             $book->published_year = $bookData['published_year'];
             $book->cover_url = $bookData['cover_url'];
             $book->info_url = $bookData['info_url'];
             $book->purchase_url = $bookData['purchase_url'];
             $book->description = $bookData['description'];
+            $book->author_id = $author_id;
     
             $book->save();
             $count--;
@@ -54,7 +64,6 @@ class BooksTableSeeder extends Seeder
             $title = $faker->words(rand(3, 6), true);
             $book->title = Str::title($title);
             $book->slug = Str::slug($title, '-');
-            $book->author = $faker->firstName . ' ' . $faker->lastName;
             $book->published_year = $faker->year;
             $book->cover_url = 'https://hes-bookmark.s3.amazonaws.com/cover-placeholder.png';
             $book->info_url = 'https://en.wikipedia.org/wiki/' . $slug;

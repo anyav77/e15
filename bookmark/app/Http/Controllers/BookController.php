@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Arr;
 use Str;
 use App\Book;
+use App\Author;
 
 class BookController extends Controller
 {
@@ -15,7 +16,11 @@ class BookController extends Controller
     */
     public function create(Request $request)
     {
-        return view('books.create');
+        # Get data for authors in alphabetical order by last name
+        $authors = Author::orderBy('last_name')->select(['id', 'first_name', 'last_name'])->get();
+        return view('books.create')->with([
+            'authors' => $authors
+        ]);
     }
 
 
@@ -32,7 +37,7 @@ class BookController extends Controller
         $request->validate([
             'slug' => 'required|unique:books,slug|alpha_dash',
             'title' => 'required',
-            'author' => 'required',
+            'author_id' => 'required',
             'published_year' => 'required|digits:4',
             'cover_url' => 'url',
             'info_url' => 'url',
@@ -47,7 +52,7 @@ class BookController extends Controller
         $newBook = new Book();
         $newBook->slug = $request->slug;
         $newBook->title = $request->title;
-        $newBook->author = $request->author;
+        $newBook->author_id = $request->author_id;
         $newBook->published_year = $request->published_year;
         $newBook->cover_url = $request->cover_url;
         $newBook->info_url = $request->info_url;

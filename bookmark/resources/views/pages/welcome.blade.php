@@ -5,12 +5,16 @@
 @endsection
 
 @section('content')
+@if(!Auth::user())
 <p>
     Welcome to Bookmark&mdash; an online book journal that let’s you track and share a history of books you’ve read.
 </p>
-
+<p>
+    <a href='/register'>Register now to get started...</a>
+</p>
+@else
 <form method='GET' action='/search'>
-
+    Welcome back, {{ $userName }}
     <h2>Search for a book to add to your list</h2>
 
     <fieldset>
@@ -72,6 +76,7 @@
         @endforeach
     </ul>
 </div>
+@endif
 @endif
 @endif
 @endsection

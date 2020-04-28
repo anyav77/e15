@@ -23,7 +23,8 @@ class CreateBooksTable extends Migration
             // title VARCHAR
             $table->string('title');
             // author VARCHAR
-            $table->string('author');
+            # No longer need this column, because we are now using author_id FK
+            // $table->string('author');
             // published_year SMALLINT
             $table->smallInteger('published_year');
             // cover_url VARCHAR nullable
