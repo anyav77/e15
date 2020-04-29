@@ -110,7 +110,8 @@ I ran into the error installing aws_video on a local server:
 
 4.  [laravel-video](https://github.com/imanghafoori1/laravel-video) package was released by imanghafoori1 in 2020.  It seems to be limited to locally hosted videos. While early attempts to develop media streaming in Laravel reference issues with playback, in particular with Google Chrome, laravel-video package seems to fix this problem with v2.0.2 release.
 
-### Installation
+### Laravel-video
+#### Installation
 It's recommended to install a database prior to installing the package.  If the database is missing during the install, testing the package will return an error.
 
 1. Create database, if you don't have it already
@@ -134,10 +135,10 @@ It's recommended to install a database prior to installing the package.  If the 
 5. upload vid.mp4 in the public/ directory
 6. navigate to the home/ directory to test the result <http://independent-study.atozez.com/home>
 
-### Troubleshooting
+#### Troubleshooting
 The error "failed to open stream: No such file or directory" comes after the installation. To resolve it, upload vid.mpg into the public directory, as described in step 5.
 
-### Observations
+#### Observations
 Laravel-video uses HTML 5 player. It uses localpath to stream the video files uploaded to Laravel public directory: `$path = public_path('vid.mp4');`
 
 Changing the path to external http request `$path = public_path('http://afterschoolprogramming.com/images/vid.mp4');` returns an error:
@@ -155,6 +156,7 @@ FFmedia is an open-source technology for video compression, which has a variety 
 AWS offers cutting edge video hosting technology at a reasonable cost, and it can be customized by region and the website needs.
 
 Laravel can be installed on Amazon EC2. 
+
 [aws_video](https://packagist.org/packages/andrelohmann-silverstripe/aws_video) package may offer a streaming solution for Laravel on EC2, but it needs testing.  
 There is a post that describes the [Amazon S3 streaming issue](https://stackoverflow.com/questions/46363623/laravel-s3-retreiving-a-video-to-stream).  It is not clear if the issue is related to a native Laravel code, or an external package.  The developer is using S3 bucket, but there are no references to Elastic Transcoder and CloudFront.  Would they help to address this issue?
 
