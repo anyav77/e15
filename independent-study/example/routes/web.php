@@ -11,7 +11,6 @@ Route::get('/', function () {
 #installed laravel-video
 Route::get('/home', function () {
     $path = public_path('vid.mp4');
-    
     VideoStreamer::streamFile($path);
 });
 
