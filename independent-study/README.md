@@ -52,7 +52,7 @@ There is a number of Laravel packages related to video streaming. They roughly f
     >offers an extended VideoFile Object with automatically upload and transcoding functionality to your aws elastic transcoding and s3 account. the module extends andrelohmann-silverstripe/mediafiles
     >you need to create an account on https://aws.amazon.com/de/developers/access-keys/ and setup a groups with AmazonS3FullAccess and AmazonElasticTranscoderFullAccess permissions
 
-    I ran into the error installing AWS on a local server:
+    I ran into the error installing aws_video on a local server:
 
     ```git
     C:\xampp\htdocs\e15\independent-study\example (master){hg}
@@ -113,11 +113,11 @@ There is a number of Laravel packages related to video streaming. They roughly f
     Installation failed, reverting ./composer.json to its original content.
     ```
 
-    4. [laravel-video](https://github.com/imanghafoori1/laravel-video) package was released by imanghafoori1 in 2020.  It seems to be limited to locally hosted videos.
+4. [laravel-video](https://github.com/imanghafoori1/laravel-video) package was released by imanghafoori1 in 2020.  It seems to be limited to locally hosted videos.
 
-    While early attempts to develop media streaming in Laravel reference issues with playback, in perticular with Google Chrome, laravel-video package seems to fix this problem with v2.0.2 release.
+While early attempts to develop media streaming in Laravel reference issues with playback, in perticular with Google Chrome, laravel-video package seems to fix this problem with v2.0.2 release.
 
-    #### Laravel-Video Installation
+#### Installation
 
     It's recommended to install a database prior to installing the package.  If the database is missing during the install, testing the package will return an error.
 
@@ -131,6 +131,7 @@ There is a number of Laravel packages related to video streaming. They roughly f
     It may take a minute or two to install. You will receive a confirmation message:
     `Package manifest generated successfully.`
     4. update navigate to routes directory, open web.php and add the following lines:
+
     ```git
     use Iman\Streamer\VideoStreamer;
 
@@ -145,7 +146,7 @@ There is a number of Laravel packages related to video streaming. They roughly f
     6. navigate to the home/ directory to test the result
     <http://independent-study.atozez.com/home>
 
-    ##### Troubleshooting
+#### Troubleshooting
     >failed to open stream: No such file or directory
 
     The error indicates that video file is not found.  Double-check that the file name and the location indicated in web.php is correct.
@@ -153,17 +154,17 @@ There is a number of Laravel packages related to video streaming. They roughly f
     ![Screenshot of Missing File Error](https://raw.githubusercontent.com/anyav77/e15/master/independent-study/images/error.png)
 
 
-    #### Laravel-video Observations
-    Laravel-video uses HTML 5 player. It uses localpath to stream the video files uploaded to Laravel public directory:
+#### Observations
+Laravel-video uses HTML 5 player. It uses localpath to stream the video files uploaded to Laravel public directory:
     `$path = public_path('vid.mp4');`
 
-    Changing the path to external http request `$path = public_path('http://afterschoolprogramming.com/images/vid.mp4');` returns an error:
-    >ErrorException
-    fopen(C:\xampp\htdocs\e15\independent-study\example\public\http://afterschoolprogramming.com/images/vid.mp4): failed to open stream: No such file or directory
+Changing the path to external http request `$path = public_path('http://afterschoolprogramming.com/images/vid.mp4');` returns an error:
+>ErrorException
+fopen(C:\xampp\htdocs\e15\independent-study\example\public\http://afterschoolprogramming.com/images/vid.mp4): failed to open stream: No such file or directory
 
-    It seems like the package relies on one file for streaming. It doesn't select the file based on the bandwidth or a browser.  There fore, its ability to adapt to different browsers and internet speeds is limited.  It may be possible through the integration with a video player, such as JW Player.
+It seems like the package relies on one file for streaming. It doesn't select the file based on the bandwidth or a browser.  There fore, its ability to adapt to different browsers and internet speeds is limited.  It may be possible through the integration with a video player, such as JW Player.
 
-    Laravel-video sreaming packages require integration with a video player to meet accessibility standards. 
+Laravel-video sreaming packages require integration with a video player to meet accessibility standards. 
 
 # Summary and Next Steps
 
