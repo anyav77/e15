@@ -49,7 +49,7 @@ Route::get('/home', function () {
 >failed to open stream: No such file or directory
 The error indicates that video file is not found.  Double-check that the file name and the location indicated in web.php is correct.
 
-![Screenshot of Missing File Error](/images/error.png)
+![Screenshot of Missing File Error](https://raw.githubusercontent.com/anyav77/e15/master/independent-study/images/error.png)
 
 ## Limitations
 Progressive dowload
