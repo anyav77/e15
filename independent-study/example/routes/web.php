@@ -10,8 +10,8 @@ Route::get('/', function () {
 
 #installed laravel-video
 Route::get('/home', function () {
-    //$path = public_path('vid.mp4');
-    $path = public_path('http://afterschoolprogramming.com/images/vid.mp4');
+    $path = public_path('vid.mp4');
+    //$path = public_path('http://afterschoolprogramming.com/images/vid.mp4');
     VideoStreamer::streamFile($path);
 });
 
