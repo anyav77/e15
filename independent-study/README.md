@@ -159,7 +159,7 @@ Laravel can be installed on Amazon EC2.
 [andrelohmann-silverstripe]<https://packagist.org/packages/andrelohmann-silverstripe/aws_video> package may offer a streaming solution for Laravel on EC2, but it needs testing.  
 There is a post that describes the [Amazon S3 streaming issue](https://stackoverflow.com/questions/46363623/laravel-s3-retreiving-a-video-to-stream).  It is not clear if the issue is related to a native Laravel code, or an external package.  The developer is using S3 bucket, but there are no references to Elastic Transcoder and CloudFront.  Would they help to address this issue?
 
-There are a number of remaining questions:
+There is a number of questions remain:
 * What caused the error with aws_video installation?
 * Will aws_video package work on Laravel installed on AWS?
 * Will laravel-video allow to stream the files from AWS? or is it limited to local files?  
