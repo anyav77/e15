@@ -46,7 +46,7 @@ There is a number of Laravel packages related to video streaming. They roughly f
     [A Vimeo bridge for Laravel](https://packagist.org/packages/vimeo/laravel)
 
 
-3. Packages for Amazon Web Services (AWS):
+3. aws_video package for Amazon Web Services (AWS):
 
     [AWS Elastic Transcoder Video Extension](https://packagist.org/packages/andrelohmann-silverstripe/aws_video) requires Amazon S3 and ElasticTranscoder, and the Developer account for access keys.  
     >offers an extended VideoFile Object with automatically upload and transcoding functionality to your aws elastic transcoding and s3 account. the module extends andrelohmann-silverstripe/mediafiles
@@ -113,24 +113,20 @@ There is a number of Laravel packages related to video streaming. They roughly f
     Installation failed, reverting ./composer.json to its original content.
     ```
 
-4. [laravel-video](https://github.com/imanghafoori1/laravel-video) package was released by imanghafoori1 in 2020.  It seems to be limited to locally hosted videos.
 
-While early attempts to develop media streaming in Laravel reference issues with playback, in perticular with Google Chrome, laravel-video package seems to fix this problem with v2.0.2 release.
+4.  [laravel-video](https://github.com/imanghafoori1/laravel-video) package was released by imanghafoori1 in 2020.  It seems to be limited to locally hosted videos. While early attempts to develop media streaming in Laravel reference issues with playback, in perticular with Google Chrome, laravel-video package seems to fix this problem with v2.0.2 release.
 
-#### Installation
+It's recommended to install a database prior to installing the package.  If the database is missing during the install, testing the package will return an error.
 
-    It's recommended to install a database prior to installing the package.  If the database is missing during the install, testing the package will return an error.
+The installation is done via command line.
 
-    The installation is done via command line.
-
-    1. Create database, if you don't have it already
-    2. Update .env file with the new database name
-    3. navigate to the directory where Laravel is installed
-    * on the local environment, run `composer require --dev imanghafoori/laravel-video`
-    * on the production environment, run `composer require imanghafoori/laravel-video`
-    It may take a minute or two to install. You will receive a confirmation message:
-    `Package manifest generated successfully.`
-    4. update navigate to routes directory, open web.php and add the following lines:
+1. Create database, if you don't have it already
+2. Update .env file with the new database name
+3. navigate to the directory where Laravel is installed
+* on the local environment, run `composer require --dev imanghafoori/laravel-video`
+* on the production environment, run `composer require imanghafoori/laravel-video`
+It may take a minute or two to install. You will receive a confirmation message: `Package manifest generated successfully.`
+4. update navigate to routes directory, open web.php and add the following lines:
 
     ```git
     use Iman\Streamer\VideoStreamer;
@@ -142,16 +138,13 @@ While early attempts to develop media streaming in Laravel reference issues with
     });
 
     ```
-    5. upload vid.mp4 in the public/ directory
-    6. navigate to the home/ directory to test the result
-    <http://independent-study.atozez.com/home>
+5. upload vid.mp4 in the public/ directory
+6. navigate to the home/ directory to test the result <http://independent-study.atozez.com/home>
 
 #### Troubleshooting
-    >failed to open stream: No such file or directory
+![Screenshot of Missing File Error](https://raw.githubusercontent.com/anyav77/e15/master/independent-study/images/error.png)
 
-    The error indicates that video file is not found.  Double-check that the file name and the location indicated in web.php is correct.
-
-    ![Screenshot of Missing File Error](https://raw.githubusercontent.com/anyav77/e15/master/independent-study/images/error.png)
+The error "failed to open stream: No such file or directory" comes after the installation. To resolve it, upload vid.mpg into the public directory
 
 
 #### Observations
@@ -164,7 +157,7 @@ fopen(C:\xampp\htdocs\e15\independent-study\example\public\http://afterschoolpro
 
 It seems like the package relies on one file for streaming. It doesn't select the file based on the bandwidth or a browser.  There fore, its ability to adapt to different browsers and internet speeds is limited.  It may be possible through the integration with a video player, such as JW Player.
 
-Laravel-video sreaming packages require integration with a video player to meet accessibility standards. 
+Laravel-video sreaming package require integration with a video player to meet accessibility standards. 
 
 # Summary and Next Steps
 
