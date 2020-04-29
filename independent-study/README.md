@@ -38,17 +38,11 @@ There is a number of Laravel packages related to video streaming. They roughly f
 1. Packages for FFmeg
 
 2. Packages for video hosting providers, such as YouTube and Vimeo.  They seem to be "media organizers".
+* [Official PHP library for the Vimeo API.](https://packagist.org/packages/vimeo/vimeo-api)
+* [Laravel PHP Facade/Wrapper for the Youtube Data API v3](https://packagist.org/packages/alaouy/youtube)
+* [A Vimeo bridge for Laravel](https://packagist.org/packages/vimeo/laravel)
 
-[Official PHP library for the Vimeo API.](https://packagist.org/packages/vimeo/vimeo-api)
-
-[Laravel PHP Facade/Wrapper for the Youtube Data API v3](https://packagist.org/packages/alaouy/youtube)
-
-[A Vimeo bridge for Laravel](https://packagist.org/packages/vimeo/laravel)
-
-
-3. aws_video package for Amazon Web Services (AWS):
-
-[AWS Elastic Transcoder Video Extension](https://packagist.org/packages/andrelohmann-silverstripe/aws_video)  
+3. [aws_video](https://packagist.org/packages/andrelohmann-silverstripe/aws_video) package for Amazon streaming:
 >offers an extended VideoFile Object with automatically upload and transcoding functionality to your aws elastic transcoding and s3 account. the module extends andrelohmann-silverstripe/mediafiles
 >you need to create an account on https://aws.amazon.com/de/developers/access-keys/ and setup a groups with AmazonS3FullAccess and AmazonElasticTranscoderFullAccess permissions
 
@@ -175,13 +169,13 @@ There are a number of additional questions remain in my research:
 
 
 ## References
-<https://laravel.io/forum/10-06-2014-streaming-video-files-with-laravel>
-<https://stackoverflow.com/questions/58709069/how-to-stream-video-in-laravel>
-<https://stackoverflow.com/questions/46363623/laravel-s3-retreiving-a-video-to-stream>
-<https://aws.amazon.com/blogs/aws/using-amazon-cloudfront-for-video-streaming/>
-<https://aws.amazon.com/solutions/implementations/video-on-demand-on-aws/>
-<https://packagist.org/packages/vimeo/vimeo-api>
-<https://packagist.org/packages/alaouy/youtube>
-<https://packagist.org/packages/vimeo/laravel>
-<https://en.wikipedia.org/wiki/FFmpeg>
-<https://www.ffmpeg.org/>
+* <https://laravel.io/forum/10-06-2014-streaming-video-files-with-laravel>
+* <https://stackoverflow.com/questions/58709069/how-to-stream-video-in-laravel>
+* <https://stackoverflow.com/questions/46363623/laravel-s3-retreiving-a-video-to-stream>
+* <https://aws.amazon.com/blogs/aws/using-amazon-cloudfront-for-video-streaming/>
+* <https://aws.amazon.com/solutions/implementations/video-on-demand-on-aws/>
+* <https://packagist.org/packages/vimeo/vimeo-api>
+* <https://packagist.org/packages/alaouy/youtube>
+* <https://packagist.org/packages/vimeo/laravel>
+* <https://en.wikipedia.org/wiki/FFmpeg>
+* <https://www.ffmpeg.org/>
