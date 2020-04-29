@@ -1,25 +1,25 @@
 # Streaming Media in Laravel
 *By Anya Zinoveva*
 
-In my graduate research, I want to explore the integration of video streaming hosting and custom web software, for example as AWS and Laravel.  This outline provides a starting point.
+In my graduate research, I want to explore the integration of video streaming hosting and custom web software, such as AWS and Laravel.  This outline provides a starting point.
 
 ## How Streaming Media Works
 
 ![Streaming on-demand video diagram](https://raw.githubusercontent.com/anyav77/e15/master/independent-study/images/video-streaming.gif)
 
-Streaming allows to optimize user experience by providing smooth video playback, regardless of the internet connection. It is achieved by progressively serving video file data to a video player, to avoid buffering.
+Streaming allows optimizing user experience by providing smooth video playback, regardless of the internet connection. It is achieved by progressively serving video file data to a video player, to avoid buffering.
 
 There are two types of video streaming:
 1. Live video streaming
 2. On-demand (pre-recorded) video streaming
 
-For the purpose of this study, I'm focusing on the pre-recorded videos.
+For this study, I'm focusing on pre-recorded videos.
 
 
 ## Media Streaming Platforms
-On-demand video platforms, such as Youtube, Vimeo, Amazon, Netflix, Hulu, have developed robust streaming solutions. The original video file is transcoded into multiple versions (different sizes and codecs), and the video player selects the appropriate file based on the users' browser and internet speed. 
+On-demand video platforms, such as YouTube, Vimeo, Amazon, Netflix, Hulu, have developed robust streaming solutions. The original video file is transcoded into multiple versions (different sizes and codecs), and the video player selects the appropriate file based on the users' browser and internet speed. 
 
-Video hosting platforms (Youtube, Vimeo) offer video streaming, video player, and control panel. While it's a convenient and reliable way to deliver individual video on a website, there is limited control over customization of playlists and video player skins. 
+Video hosting platforms (YouTube, Vimeo) offer video streaming, video player, and control panel. While it's a convenient and reliable way to deliver individual video on a website, there is limited control over customization of playlists and video player skins. 
 
 Amazon offers robust a-la-carte services for video streaming: Amazon S3, Elastic Transcoder, and CloudFront. 
 
@@ -28,12 +28,12 @@ Amazon offers robust a-la-carte services for video streaming: Amazon S3, Elastic
 
 ![Streaming on-demand video using AWS](https://d1.awsstatic.com/products/cloudfront/VOD%20Architecture%20CloudFront.aa3cb2ec3a8660b42f90072c60672a52d9c357a6.png)
 
-FFmeg is an open source platform popular among developers.  It is used by the big brands like YouTube.  FFmeg offers downloadable code that can be installed on a hosting platform.
+FFmeg is an open-source platform popular among developers.  It is used by big brands like YouTube.  FFmeg offers downloadable code that can be installed on a hosting platform.
 >FFmpeg is the leading multimedia framework, able to decode, encode, transcode, mux, demux, stream, filter and play pretty much anything that humans and machines have created. It supports the most obscure ancient formats up to the cutting edge. No matter if they were designed by some standards committee, the community or a corporation. It is also highly portable: FFmpeg compiles, runs, and passes our testing infrastructure FATE across Linux, Mac OS X, Microsoft Windows, the BSDs, Solaris, etc. under a wide variety of build environments, machine architectures, and configurations.
 <https://www.ffmpeg.org/about.html>
 
 ## Laravel Streaming Packages
-There is a number of Laravel packages related to video streaming. They roughly fall into these categories: 
+There are many Laravel packages related to video streaming. They roughly fall into these categories: 
 
 1. Packages for FFmeg
 
@@ -108,7 +108,7 @@ I ran into the error installing aws_video on a local server:
     ```
 
 
-4.  [laravel-video](https://github.com/imanghafoori1/laravel-video) package was released by imanghafoori1 in 2020.  It seems to be limited to locally hosted videos. While early attempts to develop media streaming in Laravel reference issues with playback, in perticular with Google Chrome, laravel-video package seems to fix this problem with v2.0.2 release.
+4.  [laravel-video](https://github.com/imanghafoori1/laravel-video) package was released by imanghafoori1 in 2020.  It seems to be limited to locally hosted videos. While early attempts to develop media streaming in Laravel reference issues with playback, in particular with Google Chrome, laravel-video package seems to fix this problem with v2.0.2 release.
 
 It's recommended to install a database prior to installing the package.  If the database is missing during the install, testing the package will return an error.
 
@@ -120,7 +120,7 @@ The installation is done via command line.
 * on the local environment, run `composer require --dev imanghafoori/laravel-video`
 * on the production environment, run `composer require imanghafoori/laravel-video`
 * wait for a confirmation message: `Package manifest generated successfully.`
-4. navigate to routes directory, open web.php and add the following lines:
+4. navigate to routes/web.php and add the following lines:
 
     ```git
     use Iman\Streamer\VideoStreamer;
@@ -139,8 +139,7 @@ The installation is done via command line.
 The error "failed to open stream: No such file or directory" comes after the installation. To resolve it, upload vid.mpg into the public directory, as described in step 5.
 
 #### Observations
-Laravel-video uses HTML 5 player. It uses localpath to stream the video files uploaded to Laravel public directory:
-    `$path = public_path('vid.mp4');`
+Laravel-video uses HTML 5 player. It uses localpath to stream the video files uploaded to Laravel public directory: `$path = public_path('vid.mp4');`
 
 Changing the path to external http request `$path = public_path('http://afterschoolprogramming.com/images/vid.mp4');` returns an error:
 >ErrorException
@@ -148,19 +147,19 @@ fopen(C:\xampp\htdocs\e15\independent-study\example\public\http://afterschoolpro
 
 It seems like the package relies on one local file for streaming. It doesn't select the file based on the bandwidth or a browser.  Therefore, its ability to adapt to different browsers and internet speeds is limited.  It may be possible to extend its capacity through integration with a video player, such as JW Player.
 
-Laravel-video also require integration with a video player to meet accessibility standards. 
+Laravel-video also requires integration with a video player to meet accessibility standards. 
 
 # Summary and Next Steps
 
-FFmedia is an open source technology for video compression, which has a variety of Laravel packages.  It offers downloadable code that requires a hosting account.  FFmedia is similar to [Amazon Video on Demand](https://aws.amazon.com/solutions/implementations/video-on-demand-on-aws/).
+FFmedia is an open-source technology for video compression, which has a variety of Laravel packages.  It offers downloadable code that requires a hosting account.  FFmedia is similar to [Amazon Video on Demand](https://aws.amazon.com/solutions/implementations/video-on-demand-on-aws/).
 
 AWS offers cutting edge video hosting technology at a reasonable cost, and it can be customized by region and the website needs.
 
 Laravel can be installed on Amazon EC2. 
-[andrelohmann-silverstripe]<https://packagist.org/packages/andrelohmann-silverstripe/aws_video> package may offer a streaming solutions for Laravel on EC2, but it remains to be tested.  
-There is a post that descrives the [Amazon S3 streaming issue](https://stackoverflow.com/questions/46363623/laravel-s3-retreiving-a-video-to-stream).  It is not clear if the issue is related to a native Laravel code, or an external package.  The developer is using S3 bucket, but there are no references to Elastic Transcoder and CloudFront.  Would they help to address this issue?
+[andrelohmann-silverstripe]<https://packagist.org/packages/andrelohmann-silverstripe/aws_video> package may offer a streaming solution for Laravel on EC2, but it needs testing.  
+There is a post that describes the [Amazon S3 streaming issue](https://stackoverflow.com/questions/46363623/laravel-s3-retreiving-a-video-to-stream).  It is not clear if the issue is related to a native Laravel code, or an external package.  The developer is using S3 bucket, but there are no references to Elastic Transcoder and CloudFront.  Would they help to address this issue?
 
-There are a number of additional questions remain in my research:
+There are a number of remaining questions:
 * What caused the error with aws_video installation?
 * Will aws_video package work on Laravel installed on AWS?
 * Will laravel-video allow to stream the files from AWS? or is it limited to local files?  
