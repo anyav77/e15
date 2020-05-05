@@ -5,8 +5,6 @@ In my graduate research, I want to explore the integration of video streaming ho
 
 ## How Streaming Media Works
 
-![Streaming on-demand video diagram](https://raw.githubusercontent.com/anyav77/e15/master/independent-study/images/video-streaming.gif)
-
 Streaming allows optimizing user experience by providing smooth video playback, regardless of the internet connection. It is achieved by progressively serving video file data to a video player, to avoid buffering.
 
 There are two types of video streaming:
@@ -16,157 +14,120 @@ There are two types of video streaming:
 For this study, I'm focusing on pre-recorded videos.
 
 
-## Media Streaming Platforms
-On-demand video platforms, such as YouTube, Vimeo, Amazon, Netflix, Hulu, have developed robust streaming solutions. The original video file is transcoded into multiple versions (different sizes and codecs), and the video player selects the appropriate file based on the users' browser and internet speed. 
+## Video Hosting
 
-Video hosting platforms (YouTube, Vimeo) offer video streaming, video player, and control panel. While it's a convenient and reliable way to deliver individual video on a website, there is limited control over customization of playlists and video player skins. 
+Streaming can be achieved with self-hosted video files using plugins like [laravel-video](http://independent-study.atozez.com/).  However, the industry-standard way of streaming videos is video hosting.
 
-Amazon offers robust a-la-carte services for video streaming: Amazon S3, Elastic Transcoder, and CloudFront. 
+In a nutshell, the video file uploaded to the media server is converted into multiple formats.  When the browser makes a request for a file, the server detects a browser version and the connection type and serves the corresponding file.
 
->In the on-demand streaming case, your video content is stored in S3. Your viewers can choose to watch it at any desired time, hence the name on-demand. A complete on-demand streaming solution typically makes use of Amazon S3 for storage, the Amazon Elastic Transcoder for video processing, and Amazon CloudFront for delivery.
-<https://aws.amazon.com/blogs/aws/using-amazon-cloudfront-for-video-streaming/>
+![Streaming on-demand video diagram](https://raw.githubusercontent.com/anyav77/e15/master/independent-study/images/video-streaming.gif)
 
-![Streaming on-demand video using AWS](https://d1.awsstatic.com/products/cloudfront/VOD%20Architecture%20CloudFront.aa3cb2ec3a8660b42f90072c60672a52d9c357a6.png)
+There are a variety of video-hosting providers, ranging from Free to Freemium to Enterprize:
 
-FFmeg is an open-source platform popular among developers.  It is used by big brands like YouTube.  FFmeg offers downloadable code that can be installed on a hosting platform.
->FFmpeg is the leading multimedia framework, able to decode, encode, transcode, mux, demux, stream, filter and play pretty much anything that humans and machines have created. It supports the most obscure ancient formats up to the cutting edge. No matter if they were designed by some standards committee, the community or a corporation. It is also highly portable: FFmpeg compiles, runs, and passes our testing infrastructure FATE across Linux, Mac OS X, Microsoft Windows, the BSDs, Solaris, etc. under a wide variety of build environments, machine architectures, and configurations.
-<https://www.ffmpeg.org/about.html>
+* YouTube
+* Vimeo
+* Wistia
+* FlowPlayer
+* Brightcove
+* Panopto
+* Kaltura
+* AWS
 
-## Laravel Streaming Packages
-There are many Laravel packages related to video streaming. They roughly fall into these categories: 
+The majority of video hosting services provide the embed code, shareable links, and the portal to manage media and view the files. They may also allow us to customize the player’s skin and add interactive elements. It is an appropriate solution for many websites that need a reliable and easy way to include videos on their webpages.  For example, a promotional video or a playlist for product training.
 
-1. Packages for FFmeg
-
-2. Packages for video hosting providers, such as YouTube and Vimeo.  They seem to be "media organizers".
-* [Official PHP library for the Vimeo API.](https://packagist.org/packages/vimeo/vimeo-api)
-* [Laravel PHP Facade/Wrapper for the Youtube Data API v3](https://packagist.org/packages/alaouy/youtube)
-* [A Vimeo bridge for Laravel](https://packagist.org/packages/vimeo/laravel)
-
-3. [aws_video](https://packagist.org/packages/andrelohmann-silverstripe/aws_video) package for Amazon streaming:
->offers an extended VideoFile Object with automatically upload and transcoding functionality to your aws elastic transcoding and s3 account. the module extends andrelohmann-silverstripe/mediafiles
->you need to create an account on https://aws.amazon.com/de/developers/access-keys/ and setup a groups with AmazonS3FullAccess and AmazonElasticTranscoderFullAccess permissions
-
-I ran into the error installing aws_video on a local server:
-
-    ```git
-    C:\xampp\htdocs\e15\independent-study\example (master){hg}
-    λ composer require andrelohmann-silverstripe/aws_video
-    Using version ^0.2.0 for andrelohmann-silverstripe/aws_video
-    ./composer.json has been updated
-    Loading composer repositories with package information
-    Updating dependencies (including require-dev)
-    Your requirements could not be resolved to an installable set of packages.
-
-    Problem 1
-        - Conclusion: install php-ffmpeg/php-ffmpeg 0.6.0
-        - Installation request for andrelohmann-silverstripe/aws_video ^0.2.0 -> satisfiable by andrelohmann-silverstripe/aws_video[0.2.0].
-        - Conclusion: remove monolog/monolog 2.0.2
-        - Conclusion: don't install monolog/monolog 2.0.2
-        - php-ffmpeg/php-ffmpeg 0.6.0 requires alchemy/binary-driver ~1.5 -> satisfiable by alchemy/binary-driver[1.5.0, 1.6.0].
-        - alchemy/binary-driver 1.5.0 requires monolog/monolog ~1.3 -> satisfiable by monolog/monolog[1.10.0, 1.11.0, 1.12.0, 1.13.0, 1.13.1, 1.14.0, 1.15.0, 1.16.0, 1.17.0, 1.17.1, 1.17.2, 1.18.0, 1.18.1, 1.18.2, 1.19.0, 1.20.0, 1.21.0, 1.22.0, 1.22.1, 1.23.0, 1.24.0, 1.25.0, 1.25.1, 1.25.2, 1.25.3, 1.3.0, 1.3.1, 1.4.0, 1.4.1, 1.5.0, 1.6.0, 1.7.0, 1.8.0, 1.9.0, 1.9.1, 1.x-dev].
-        - alchemy/binary-driver 1.6.0 requires monolog/monolog ^1.3 -> satisfiable by monolog/monolog[1.10.0, 1.11.0, 1.12.0, 1.13.0, 1.13.1, 1.14.0, 1.15.0, 1.16.0, 1.17.0, 1.17.1, 1.17.2, 1.18.0, 1.18.1, 1.18.2, 1.19.0, 1.20.0, 1.21.0, 1.22.0, 1.22.1, 1.23.0, 1.24.0, 1.25.0, 1.25.1, 1.25.2, 1.25.3, 1.3.0, 1.3.1, 1.4.0, 1.4.1, 1.5.0, 1.6.0, 1.7.0, 1.8.0, 1.9.0, 1.9.1, 1.x-dev].
-        - Can only install one of: monolog/monolog[1.12.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.13.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.13.1, 2.0.2].
-        - Can only install one of: monolog/monolog[1.14.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.15.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.16.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.17.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.17.1, 2.0.2].
-        - Can only install one of: monolog/monolog[1.17.2, 2.0.2].
-        - Can only install one of: monolog/monolog[1.18.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.18.1, 2.0.2].
-        - Can only install one of: monolog/monolog[1.18.2, 2.0.2].
-        - Can only install one of: monolog/monolog[1.19.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.20.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.21.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.22.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.22.1, 2.0.2].
-        - Can only install one of: monolog/monolog[1.23.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.24.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.25.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.25.1, 2.0.2].
-        - Can only install one of: monolog/monolog[1.25.2, 2.0.2].
-        - Can only install one of: monolog/monolog[1.25.3, 2.0.2].
-        - Can only install one of: monolog/monolog[1.x-dev, 2.0.2].
-        - Can only install one of: monolog/monolog[1.10.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.11.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.3.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.3.1, 2.0.2].
-        - Can only install one of: monolog/monolog[1.4.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.4.1, 2.0.2].
-        - Can only install one of: monolog/monolog[1.5.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.6.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.7.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.8.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.9.0, 2.0.2].
-        - Can only install one of: monolog/monolog[1.9.1, 2.0.2].
-        - Installation request for monolog/monolog (locked at 2.0.2) -> satisfiable by monolog/monolog[2.0.2].
+AWS doesn’t include the out-of-the-box portal and media player: it is focused on optimizing and delivering media via the cloud.  Instead, it provides a Software Development Kit (SDK), which allows integration of AWS media services into frameworks like Laravel for creating robust applications. AWS is a better fit for companies that focus on live streaming, video production, and distribution. 
 
 
-    Installation failed, reverting ./composer.json to its original content.
-    ```
+## AWS Media Services
+
+AWS Media Services can be classified based on the video streaming type (on-demand vs live)
+
+### On-Demand Streaming:
+* Elastic Transcoder
+
+### On-Demand and Live Streaming:
+* MediaConvert
+* Elemental Appliances & Software
+* MediaTailor
+* MediaPackage
+
+### Live Streaming:
+* MediaStore
+* MediaLive
+* MediaConnect
+* Kinesis Video Streams
+
+#### Elastic Transcoder (ETC)
+Elastic Transcoder is a media transcoding service that converts original video media files into a web-based format. It allows combining clips, adding captions and watermarks. ETC integrates with S3 for storing input and output videos.
+ 
+ETC provides a cost-effective solution for long videos. For short videos, it could be replaced with AWS Lambda + FFmpeg integration. 
+
+Elastic Transcoder is similar to MediaConvert, but it runs on EC2 and covers a greater range of file formats: “if you need to create WebM, MP3 audio-only outputs, or animated GIF files, or if you want to enable encryption in conjunction with KMS, or if you require auto-rotation of your files, you will need to use Elastic Transcoder (ETS)”
+<https://forums.aws.amazon.com/thread.jspa?threadID=268221>
+
+#### Elemental MediaConvert
+MediaConvert is a newer media transcoding service, an alternative to Elastic Transcoder. it accepts video input and transcodes then into multiple formats, for both broadcast and on-demand delivery. It’s an efficient solution for transcoding large media libraries. It includes graphic overlays, content protection, multi-language audio, closed captioning support, and professional broadcast formats.
+MediaConvert does not accept .mov files.
+ 
+ 
+#### Elemental MediaPackage
+Media package prepares the live and on-demand video for online distribution.  It accepts input from S3 or a video camera via LiveEncoding, transcodes the video and delivers it to CDN for distribution. It offers security and scalability.
 
 
-4.  [laravel-video](https://github.com/imanghafoori1/laravel-video) package was released by imanghafoori1 in 2020.  It seems to be limited to locally hosted videos. While early attempts to develop media streaming in Laravel reference issues with playback, in particular with Google Chrome, laravel-video package seems to fix this problem with v2.0.2 release.
+#### Elemental MediaStore
+Elemental MediaStore is media storage for live video streams.  It allows optimizing the delivery of live media content based on the number of viewers. It acts as an intermediate step between LiveEncoding and CDN. MediaStore can be used as a preliminary storage step before the video is written to S3.
+ 
+MediaStore is similar to MediaPackage:
+“AWS Elemental MediaPackage provides just-in-time packaging and live-to-VOD features as well as origination for live streams. If multiple formats and DRMs are required, or DVR-like features, you can use AWS Elemental MediaPackage. ”
+<https://aws.amazon.com/mediastore/faqs/>
 
-### Laravel-video
-#### Installation
-It's recommended to install a database prior to installing the package.  If the database is missing during the install, testing the package will return an error.
 
-1. Create database, if you don't have it already
-2. Update .env file with the new database name
-3. navigate to the directory where Laravel is installed
-* on the local environment, run `composer require --dev imanghafoori/laravel-video`
-* on the production environment, run `composer require imanghafoori/laravel-video`
-* wait for a confirmation message: `Package manifest generated successfully.`
-4. navigate to routes/web.php and add the following lines:
+#### Elemental Appliances & Software
+It provides on-premises media solutions, such as processing videos from security cameras and broadcasting them to the multi-screen devices.  It supports both live video input and server-based media files.
 
-    ```git
-    use Iman\Streamer\VideoStreamer;
+#### Elemental MediaTailor
+EMT is an ad monetization service that displays targeted ads in the video streams without sacrificing broadcast-grade video quality (i.e. both the video stream and the ads have the same quality). It also provides accurate measurements of ad performance and optimizes efficiency.
 
-    #installed laravel-video
-    Route::get('/home', function () {
-        $path = public_path('vid.mp4');
-        VideoStreamer::streamFile($path);
-    });
 
-    ```
-5. upload vid.mp4 in the public/ directory
-6. navigate to the home/ directory to test the result <http://independent-study.atozez.com/home>
+#### Elemental MediaConnect
+MediaConnect is a live video transfer service. It provides a reliable and affordable way to transmit live video via the cloud, as an alternative to video satellite transmission.  For example, a live event could be transmitted to different locations: headquarters, TV channel, industry partner, etc. MediaConnect receives the input from LiveEncoders and sends it to MediaLive or on-premise receiver or IRD.
+ 
+#### Elemental MediaLive
+MediaLive is a live broadcasting service.  It accepts input from cameras or MediaConnect, transcodes the video streams, and distributes them across CDN to the end-users.
+ 
+#### Kinesis Video Stream
+Kinesis Video Stream is the next-generation media service.  It collects input video from a variety of devices for data analysis.  The use cases include machine learning for security alerts, monitoring appliances, and manufacturing equipment, building two-way video interaction, etc.
 
-#### Troubleshooting
-The error "failed to open stream: No such file or directory" comes after the installation. To resolve it, upload vid.mpg into the public directory, as described in step 5.
+## Streaming On-Demand Videos with AWS
 
-#### Observations
-Laravel-video uses HTML 5 player. It uses localpath to stream the video files uploaded to Laravel public directory: `$path = public_path('vid.mp4');`
+AWS MediaServices is an adaptable system that can be customized based on the project needs.  It integrates with third-party tools like FFmpeg, which can help to lower the costs.
 
-Changing the path to external http request `$path = public_path('http://afterschoolprogramming.com/images/vid.mp4');` returns an error:
->ErrorException
-fopen(C:\xampp\htdocs\e15\independent-study\example\public\http://afterschoolprogramming.com/images/vid.mp4): failed to open stream: No such file or directory
+The cloud-based, on-demand streaming solution can be achieved with the combination of AWS services:
+* Amazon S3
+* AWS Elemental MediaConvert
+* AWS Elemental MediaPackage
+* Amazon CloudFront
+* Compatible Media Player
 
-It seems like the package relies on one local file for streaming. It doesn't select the file based on the bandwidth or a browser.  Therefore, its ability to adapt to different browsers and internet speeds is limited.  It may be possible to extend its capacity through integration with a video player, such as JW Player.
+![Streaming on-demand video with AWS diagram](https://raw.githubusercontent.com/anyav77/e15/master/independent-study/images/workflow-aws-on-demand-streaming.png)
 
-Laravel-video also requires integration with a video player to meet accessibility standards. 
+The workflow involves:
+1. Uploading video into S3 bucket
+2. Transcoding the file using MediaConvert
+3. Saving the transcoded file to S3 bucket 
+4. Using MediaPackage for delivering the appropriate video file to CloudFront
+5. Integrating CloudFront with a video player
 
-# Summary and Next Steps
+S3 storage contains two baskets: the input basket stores original files, and the output basket stores the converted video files.
+ 
+MediaConvert retrieves the file from the input S3 basket, converts it into a web format, and saves it into output S3 basket.
 
-FFmedia is an open-source technology for video compression, which has a variety of Laravel packages.  It offers downloadable code that requires a hosting account.  FFmedia is similar to [Amazon Video on Demand](https://aws.amazon.com/solutions/implementations/video-on-demand-on-aws/).
+AWS MediaPackage retrieves the converted file from S3, assigns the DRM profiles and delivers it to CloudFront
 
-AWS offers cutting edge video hosting technology at a reasonable cost, and it can be customized by region and the website needs.
+![AWS diagram showing streaming process from Media Transcoders to S3 to MediaPackage to CloudFront](https://d1.awsstatic.com/awselemental/Workflows/product-page-diagram_Elemental-MediaPackage_VOD_HIW_930x374_r05_@2x.c2b0531f57df99e5883c24aefc9a3863f33975a6.png)
 
-Laravel can be installed on Amazon EC2. 
 
-[aws_video](https://packagist.org/packages/andrelohmann-silverstripe/aws_video) package may offer a streaming solution for Laravel on EC2, but it needs testing.  
-There is a post that describes the [Amazon S3 streaming issue](https://stackoverflow.com/questions/46363623/laravel-s3-retreiving-a-video-to-stream).  It is not clear if the issue is related to a native Laravel code, or an external package.  The developer is using S3 bucket, but there are no references to Elastic Transcoder and CloudFront.  Would they help to address this issue?
-
-There is a number of questions remain:
-* What caused the error with aws_video installation?
-* Will aws_video package work on Laravel installed on AWS?
-* Will laravel-video allow to stream the files from AWS? or is it limited to local files?  
-* Can YouTube/Vimeo can be used in a database/video control panel format? 
-* What are the capabilities of Laravel packages that offer API integrations with Vimeo and YouTube?
-
+Since AWS is focused on encoding and delivering media to CDN, the AWS MediaServices don’t include a media player. Amazon provides documentation on how to configure a media player with CloudFront. It recommends VLC player among its partners.
 
 ## References
 * <https://laravel.io/forum/10-06-2014-streaming-video-files-with-laravel>
@@ -174,8 +135,31 @@ There is a number of questions remain:
 * <https://stackoverflow.com/questions/46363623/laravel-s3-retreiving-a-video-to-stream>
 * <https://aws.amazon.com/blogs/aws/using-amazon-cloudfront-for-video-streaming/>
 * <https://aws.amazon.com/solutions/implementations/video-on-demand-on-aws/>
-* <https://packagist.org/packages/vimeo/vimeo-api>
-* <https://packagist.org/packages/alaouy/youtube>
-* <https://packagist.org/packages/vimeo/laravel>
 * <https://en.wikipedia.org/wiki/FFmpeg>
 * <https://www.ffmpeg.org/>
+* <https://aws.amazon.com/media-services/>
+* <https://www.elemental.com/products/aws-media-services/>
+* <https://aws.amazon.com/elastictranscoder/>
+* <https://stackoverflow.com/questions/25734763/amazon-elastic-transcoder-vs-ffmpeg>
+* <https://cloudiamo.com/2017/03/07/five-things-i-wish-i-could-do-with-the-amazon-elastic-transcoder/>
+* <https://stackshare.io/stackups/amazon-elastic-transcoder-vs-aws-elemental-mediaconvert>
+* <https://forums.aws.amazon.com/thread.jspa?threadID=268221>
+* <https://us-east-2.console.aws.amazon.com/mediaconvert/home?region=us-east-2#/welcome>
+* <https://aws.amazon.com/mediaconvert/>
+* <https://aws.amazon.com/elemental-appliances-software/>
+* <https://aws.amazon.com/mediatailor/>
+* <https://www.youtube.com/watch?v=3kMqz9ncCqE>
+* <https://aws.amazon.com/kinesis/video-streams/>
+* <https://aws.amazon.com/mediaconnect/>
+* <https://aws.amazon.com/medialive/>
+* <https://aws.amazon.com/mediapackage/>
+* <https://github.com/aws/aws-sdk-php>
+* <https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Streaming_URLs.html>
+* <https://aws.amazon.com/marketplace/pp/Amazon-Web-Services-Inc-VLC-Media-Player/prodview-y4kbs3po3exx6>
+* <https://aws.amazon.com/mediastore/>
+* <https://aws.amazon.com/mediastore/faqs/>
+* <https://aws.amazon.com/blogs/aws/aws-media-services-process-store-and-monetize-cloud-based-video/>
+* <https://searchcio.techtarget.com/definition/digital-rights-management>
+* <https://en.wikipedia.org/wiki/VLC_media_player>
+* <https://en.wikipedia.org/wiki/Integrated_receiver/decoder>
+* <https://aws.amazon.com/about-aws/whats-new/2018/12/aws-elemental-medialive-now-supports-aws-elemental-mediaconnect-flows-as-inputs/>
