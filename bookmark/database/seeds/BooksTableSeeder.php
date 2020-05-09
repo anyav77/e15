@@ -60,6 +60,7 @@ class BooksTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         for ($i = 0; $i < 5; $i++) {
+            $author_id = 6;
             $book = new Book();
             $title = $faker->words(rand(3, 6), true);
             $book->title = Str::title($title);
@@ -69,6 +70,7 @@ class BooksTableSeeder extends Seeder
             $book->info_url = 'https://en.wikipedia.org/wiki/' . $slug;
             $book->purchase_url = 'https://www.barnesandnoble.com/' . $slug;
             $book->description = $faker->paragraphs(1, true);
+            $book->author_id = $author_id;
 
             $book->save();
         }

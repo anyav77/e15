@@ -19,6 +19,7 @@ class AuthorsTableSeeder extends Seeder
             ['Maya', 'Angelou', 1928, 'https://en.wikipedia.org/wiki/Maya_Angelou'],
             ['J.K.', 'Rowling', 1965, 'https://en.wikipedia.org/wiki/J._K._Rowling'],
             ['Dr.', 'Seuss', 1904, 'https://en.wikipedia.org/wiki/Dr._Seuss'],
+            ['John', 'Smith', 1977, 'https://en.wikipedia.org/wiki/John._Smith'],
         ];
     
         $count = count($authors);

@@ -29,7 +29,15 @@ Edit - {{ $book->title }}
     <input type='text' name='title' id='title' value='{{ old('title', $book->title) }}'>
 
     <label for='author'>* Author</label>
-    <input type='text' name='author' id='author' value='{{ old('author', $book->author) }}'>
+    {{-- <input type='text' name='author' id='author' value='{{ old('author', $book->author) }}'> --}}
+
+    <select id='author' name='author_id'>
+        <option value=''>Choose one...</option>
+        @foreach($authors as $author)
+        <option value='{{ $author->id }}'>
+            {{ $author->first_name.' '.$author->last_name }}</option>
+        @endforeach
+    </select>
 
     <label for='published_year'>* Published Year (YYYY)</label>
     <input type='text' name='published_year' id='published_year'

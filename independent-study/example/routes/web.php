@@ -11,6 +11,7 @@ Route::get('/', function () {
 #installed laravel-video
 Route::get('/home', function () {
     $path = public_path('vid.mp4');
+    # It doesn't allow to steam content via absolute URI
     //$path = public_path('http://afterschoolprogramming.com/images/vid.mp4');
     VideoStreamer::streamFile($path);
 });

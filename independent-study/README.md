@@ -120,7 +120,7 @@ The workflow involves:
 
 S3 storage contains two baskets: the input basket stores original files, and the output basket stores the converted video files.
  
-MediaConvert retrieves the file from the input S3 basket, converts it into a web format, and saves it into output S3 basket.
+MediaConvert retrieves the original file from the input S3 basket, converts it into multiple web formats, and saves the files into output S3 basket.
 
 AWS MediaPackage retrieves the converted file from S3, assigns the DRM profiles and delivers it to CloudFront
 

@@ -6,9 +6,75 @@ use Illuminate\Http\Request;
 use App\Book;
 use Str;
 use App\Author;
+use App\User;
 
 class PracticeController extends Controller
 {
+    /**
+*
+*/
+    # Update the note example
+    public function practice29()
+    {
+        # As an example, grab a user we know has books on their list
+        $user = User::where('email', '=', 'jill@harvard.edu')->first();
+
+        # Grab the first book on their list
+        $book = $user->books()->first();
+
+        # Update and save the notes for this relationship
+        $book->pivot->notes = "New note...";
+        $book->pivot->save();
+
+        dump($book->toArray());
+
+        return 'Update complete';
+    }
+
+    # Delete the book from the list example
+    public function practice28()
+    {
+        # As an example, grab a user we know has books on their list
+        $user = User::where('email', '=', 'jill@harvard.edu')->first();
+
+        # Grab the first book on their list
+        $book = $user->books()->first();
+
+        # Delete the relationship
+        //$book->pivot->delete();
+        dump($user->toArray());
+        dump($book->toArray());
+
+        return 'Delete complete';
+    }
+    public function practice27()
+    {
+        # Eager load users to reduce number of queries
+        $books = Book::with('users')->get();
+
+        foreach ($books as $book) {
+            if ($book->users->count() == 0) {
+                dump($book->title . ' is not on any user’s list');
+            } else {
+                dump($book->title . ' is on the following user’s lists:');
+
+                foreach ($book->users as $user) {
+                    dump($user->email);
+                }
+            }
+        }
+    }
+    public function practice26()
+    {
+        $user = User::where('email', '=', 'jill@harvard.edu')->first();
+
+        dump($user->name.' has the following books on their list: ');
+
+        # Note how we can treate the `books` relationship as a dynamic propert ($user->books)
+        foreach ($user->books as $book) {
+            dump($book->title);
+        }
+    }
     # Week 11 Examples
     public function practice25()
     {

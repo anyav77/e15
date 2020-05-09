@@ -69,9 +69,18 @@ Route::group(['middleware' => 'auth'], function () {
     # Show a book
     Route::get('/books/{slug?}', 'BookController@show');
 
+    # List
+    Route::get('/list', 'ListController@show');
+    Route::put('/list/{slug}', 'ListController@update');
+    Route::get('/list/{slug?}/add', 'ListController@add');
+    Route::post('/list/{slug?}/add', 'ListController@save');
+    # Remove a Book from the list
+    # Show the page to confirm removal of a book
+    Route::get('/list/{slug}/delete', 'ListController@delete');
+    # Process the removal of a book
+    Route::delete('/list/{slug}/destroy', 'ListController@destroy');
     # Misc
     Route::get('/search', 'BookController@search');
-    Route::get('/list', 'BookController@list');
 });
 
 

@@ -122,15 +122,6 @@ class BookController extends Controller
 
 
     /**
-     * GET /list
-     */
-    public function list()
-    {
-        # TODO
-        return view('books.list');
-    }
-
-    /**
      * GET /books
      * Show all the books in the library
      */
@@ -156,11 +147,13 @@ class BookController extends Controller
      */
     public function show($slug)
     {
+        $books = $request->user()->books->sortByDesc('pivot.created_at');
         $book = Book::where('slug', '=', $slug)->first();
 
 
         return view('books.show')->with([
             'book' => $book,
+            'books' => $books,
             'slug' => $slug,
         ]);
     }
@@ -170,10 +163,13 @@ class BookController extends Controller
      */
     public function edit(Request $request, $slug)
     {
+        # Get data for authors in alphabetical order by last name
+        $authors = Author::orderBy('last_name')->select(['id', 'first_name', 'last_name'])->get();
         $book = Book::where('slug', '=', $slug)->first();
 
         return view('books.edit')->with([
-            'book' => $book
+            'book' => $book,
+            'authors' => $authors
         ]);
     }
     /**
@@ -195,9 +191,12 @@ class BookController extends Controller
     public function destroy(Request $request, $slug)
     {
         $book = Book::where('slug', '=', $slug)->first();
+        # Remove the relationship between the book and the users
+        $book->users()->detach();
+        # Delete the book
         $book->delete();
-        return redirect('/books/'.$slug)->with([
-            'flash-alert' => 'This book has been deleted.'
+        return redirect('/books')->with([
+            'flash-alert' => '"' . $book->title . '" has been deleted.'
         ]);
     }
     /**
@@ -210,7 +209,7 @@ class BookController extends Controller
         $request->validate([
             'slug' => 'required|unique:books,slug,'.$book->id.'|alpha_dash',
             'title' => 'required',
-            'author' => 'required',
+            'author_id' => 'required',
             'published_year' => 'required|digits:4',
             'cover_url' => 'url',
             'info_url' => 'url',
@@ -220,7 +219,7 @@ class BookController extends Controller
 
         $book->slug = $request->slug;
         $book->title = $request->title;
-        $book->author = $request->author;
+        $book->author_id = $request->author_id;
         $book->published_year = $request->published_year;
         $book->cover_url = $request->cover_url;
         $book->info_url = $request->info_url;

@@ -29,6 +29,12 @@ Book not found. <a href='/books'>Check out the other books in our library...</a>
     <a href='{{ $book->info_url }}'>Learn more...</a>
 </p>
 
+@if($books->count() == 0)
+<a class='btn btn-primary' href='/list/{{ $book->slug }}/add'>Add to your list</a>
+@else
+<a class='btn btn-primary' href='/list/{{ $book->slug }}/delete'>Remove from your list</a>
+@endif
+
 <a class='btn btn-primary' href='/books/{{ $book->slug }}/edit'>Edit this book</a>
 <a class='btn btn-primary' href='/books/{{ $book->slug }}/confirm'>Delete this book</a>
 @endif
