@@ -145,11 +145,12 @@ class BookController extends Controller
      * GET /book/{slug}
      * Show the details for an individual book
      */
-    public function show($slug)
+    public function show(Request $request, $slug)
     {
-        $books = $request->user()->books->sortByDesc('pivot.created_at');
+        $books = $request->user()->books->get;
+        // need to check if the book with a certain slug is on the list
+        
         $book = Book::where('slug', '=', $slug)->first();
-
 
         return view('books.show')->with([
             'book' => $book,
