@@ -6,24 +6,35 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+# Static Pagges
 Route::get('/', 'PageController@welcome');
 Route::get('/about', 'PageController@about');
 Route::get('/contact', 'PageController@contact');
 
-# Register
-# Login
-# Account - Edit Details
-# Account - Social Stream
-# Account - Sales Dashboard
+# Wiki Section
+# Wiki Home
+Route::get('/wiki', 'WikiController@index');
+# Wiki Article page
+Route::get('/wiki/{uid}/{category?}/{subcategory?}/{title?}', 'WikiController@show');
 
-# Wiki Home Page
-// Route::get('/wiki', 'WikiController@index');
+# Wiki filter the articles by category, subcategory, author/user
+# Using user instead of author because the article may have multiple authors;
+# However, only one user can publish the content
+// Route::get('/filter/{category?}/{subcategory?}/{uid}/{title?}'
+// or
+Route::get('/filter/{category?}/{subcategory?}/{author?}/{keyword?}', 'FilterController@index');
+
+
 # Wiki add page
 //Route::get('/wiki/create', 'WikiController@create');
 //Route::post('/wiki', 'WikiController@store');
 # Wiki edit page
-//Route::get('/wiki/{id}/edit', 'WikiController@edit');
+//Route::get('/wiki/{id}/{title}/edit', 'WikiController@edit'); //or
+//Route::get('/wiki/{user}/{title}/edit', 'WikiController@edit'); //or
 //Route::post('/wiki', 'WikiController@store');
+
+
 
 # Forum - Home Page
 //Route::get('/forum', 'ForumController@index');
@@ -36,6 +47,11 @@ Route::get('/contact', 'PageController@contact');
 //Route::get('/contact/create', 'PageController@create');
 //Route::post('/contact', 'PageController@store');
 
+# Register
+# Login
+# Account - Edit Details
+# Account - Social Stream
+# Account - Sales Dashboard
 
 
 # Debug

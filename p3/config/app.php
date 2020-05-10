@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Educational Film Network'),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -228,5 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+    /* custom setting */
+    'supportPhone' => '800-123-4567',
 
 ];

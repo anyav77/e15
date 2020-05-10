@@ -21,7 +21,7 @@ Already have an account? <a href='/login'>Login here...</a>
     @include('includes.error-field', ['fieldName' => 'password'])
 
     <label for='password-confirm'>Confirm Password</label>
-    <input id='password-confirm' type='password' dusk='pasword-confirm-input' name='password_confirmation' required>
+    <input id='password-confirm' type='password' dusk='password-confirm-input' name='password_confirmation' required>
 
     <button type='submit' dusk='register-button' class='btn btn-primary'>Register</button>
 </form>

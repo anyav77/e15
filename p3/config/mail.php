@@ -105,5 +105,8 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
+        /* custom setting */
+        'supportEmail' => 'support@educationalfilms.com',
+        
 
 ];

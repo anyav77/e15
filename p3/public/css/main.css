@@ -1,12 +1,31 @@
-body {
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     text-align: center;
 }
 
-header {margin-bottom: 30px; padding: 10px;}
+/* header and main nav*/
+header {padding-bottom: 10px;}
+nav {background-color: #333; padding: 2px 0 1px 0; margin-bottom: 5px;}
+nav li{
+    list-style-type: disk;
+    display: inline; 
+    text-transform: uppercase;
+    padding: 0 10px 0 0;
+}
+.login {
+    padding-left: 15px
+}
+nav li a {color: white; font-weight: 700; text-decoration: underline;}
 
-fieldset, section{margin: 0 auto; }
-section{border: 1px solid #999; padding: 20px; margin-bottom: 5px; background-color: rgb(240, 240, 240);}
-fieldset{width: 380px; text-align: left;}
-h2 {padding-bottom: 15px; text-transform: uppercase;}
+/* main content*/
+fieldset, section{margin: 0 auto; text-align: left;}
+section p, h1, h2 {max-width: 600px; margin: 0 auto;}
+h1, h2 {margin-top: 15px;}
+fieldset{width: 380px;}
 label {width: 150px;}
-ul li{list-style-type: none;}
+
+
+/* footer */
+footer {position: absolute; bottom: 0; height: 5%; width: 100%; background-color: black;}
