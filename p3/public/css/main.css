@@ -1,9 +1,34 @@
+/* http://www.paulirish.com/2012/box-sizing-border-box-ftw */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html {
+    /* http://snook.ca/archives/html_and_css/font-size-with-rem */
+    font-size: 62.5%;
+
+    color: #fff;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    text-align: center;
 }
+body{    
+    text-align: center;
+    /* Default font-size */
+    font-size: 1rem;
+    /* https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/ */
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+
 
 /* header and main nav*/
 header {padding-bottom: 10px;}
@@ -20,12 +45,143 @@ nav li{
 nav li a {color: white; font-weight: 700; text-decoration: underline;}
 
 /* main content*/
-fieldset, section{margin: 0 auto; text-align: left;}
-section p, h1, h2 {max-width: 600px; margin: 0 auto;}
-h1, h2 {margin-top: 15px;}
-fieldset{width: 380px;}
-label {width: 150px;}
+/*section p, h1, h2, fieldset {max-width: 600px; margin: 0 auto;}*/
+h1, h2 {margin-top: 15px; margin-bottom: 15px;}
+form {text-align: center;}
+/* main content from Bookmark application HES E15 by Susan Buck*/
+section {
+    /* https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/ */
+    flex: 1;
+
+    text-align: left;
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+/*----------------------------------------------------
+Forms - copied from the Bookmark app HES E15 authored by Susan Buck
+-----------------------------------------------------*/
+label,
+legend {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: 1.2rem;
+    letter-spacing: .75px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+textarea,
+select {
+    display: block;
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 3px;
+    font-family: Consolas, Courier, monospace;
+    border: 1px solid #ccc;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+    display: inline;
+}
+
+input[type='checkbox']+label,
+input[type='radio']+label {
+    display: inline;
+    font-weight: normal;
+}
+
+ul.inputs {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.inputs label {
+    text-transform: none;
+    font-weight: normal;
+    margin: 0;
+}
+
+.input-info {
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.btn,
+button {
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+.error {
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+.globalFormError {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 5px;
+}
+
+.success {
+    color: #3c763d;
+}
+
+.details {
+    font-size: 1.1rem;
+    font-style: italic;
+    text-align: left;
+}
+
+
+
+/*----------------------------------------------------
+Misc
+-----------------------------------------------------*/
+/* http://nicolasgallagher.com/micro-clearfix-hack/ */
+.cf:before,
+.cf:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+.flash-alert {
+    background-color: yellow;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+}
 
 
 /* footer */
-footer {position: absolute; bottom: 0; height: 5%; width: 100%; background-color: black;}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0; 
+    height: 5%; 
+    width: 100%; 
+    background-color: black;
+}

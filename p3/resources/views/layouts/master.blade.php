@@ -22,6 +22,7 @@
                 <li><a href='/about'>About</a></li>
                 <li><a href='/contact'>Contact</a></li>
                 <li class='login'><a href='/home'>Login</a></li>
+                <li><a href='/search'>Search</a></li>
             </ul>
         </nav>
         <a href='/'><img src='/images/efn-logo@1x.gif' id='logo' alt='EFN Logo'></a>

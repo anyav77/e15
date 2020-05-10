@@ -7,43 +7,42 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-# Static Pagges
+# Static Pages
 Route::get('/', 'PageController@welcome');
 Route::get('/about', 'PageController@about');
 Route::get('/contact', 'PageController@contact');
+Route::get('/search', 'FilterController@index');
 
 # Wiki Section
-# Wiki Home
+# Home
 Route::get('/wiki', 'WikiController@index');
-# Wiki Article page
+
+# Add Page
+// This route must comes before `/wiki/{uid}/{category?}/{subcategory?}/{title?}` so it takes precedence
+Route::get('/wiki/create', 'WikiController@create');
+Route::post('/wiki', 'WikiController@store');
+
+# View article page
 Route::get('/wiki/{uid}/{category?}/{subcategory?}/{title?}', 'WikiController@show');
 
-# Wiki filter the articles by category, subcategory, author/user
-# Using user instead of author because the article may have multiple authors;
-# However, only one user can publish the content
-// Route::get('/filter/{category?}/{subcategory?}/{uid}/{title?}'
-// or
-Route::get('/filter/{category?}/{subcategory?}/{author?}/{keyword?}', 'FilterController@index');
-
-
-# Wiki add page
-//Route::get('/wiki/create', 'WikiController@create');
-//Route::post('/wiki', 'WikiController@store');
-# Wiki edit page
+# Edit page
 //Route::get('/wiki/{id}/{title}/edit', 'WikiController@edit'); //or
 //Route::get('/wiki/{user}/{title}/edit', 'WikiController@edit'); //or
 //Route::post('/wiki', 'WikiController@store');
 
+# Search allows to filter the articles by category, subcategory, author/user
+# Future goal: allow seaching books and film catalog
+# The articles and books may have multiple authors;
+# The articles are attached to one user who published the content
+# In the future, I may need to add joined accounts,
+# so that multiple users can track the article views or book sales
+Route::get('/searchresults', 'FilterController@searchresults');
+// Route::get('/filter/{category?}/{subcategory?}/{uid}/{title?}'
+// or
+//Route::get('/search/{category?}/{subcategory?}/{author?}/{keyword?}', 'FilterController@search');
 
 
-# Forum - Home Page
-//Route::get('/forum', 'ForumController@index');
-# Forum - New Post
-//Route::get('/forum/create', 'ForumController@create');
-//Route::post('/forum', 'ForumController@store');
-# Forum - Update Post ?
-
-# Contact
+# Contact Form - future goal
 //Route::get('/contact/create', 'PageController@create');
 //Route::post('/contact', 'PageController@store');
 
