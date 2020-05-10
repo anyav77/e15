@@ -38,7 +38,7 @@ Add an Article
     <label for='description'>Description</label>
     <textarea name='description'></textarea>
 
-    <input type='submit' value='Add a book'>
+    <input type='submit' value='Publish an article'>
     @if(count($errors) > 0)
     <ul class="alert alert-danger">
         @foreach ($errors->all() as $error)
