@@ -21,7 +21,7 @@ html, body {
 body{    
     text-align: center;
     /* Default font-size */
-    font-size: 1rem;
+    font-size: 1.2rem;
     /* https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/ */
     display: flex;
     min-height: 100vh;
