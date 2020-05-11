@@ -9,7 +9,7 @@ Advanced Search
 
 @section('content')
 <h1>Advanced Search</h1>
-<form method='GET' action='/searchresults'>
+<form method='GET' action='/searchresults/'>
     <fieldset>
         <input type='text' name='searchTerms' id='searchTerms' value='{{old('searchTerms', $searchTerms)}}'>
     </fieldset>

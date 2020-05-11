@@ -38,18 +38,16 @@ Route::get('/wiki/{id}/{slug}/edit', 'WikiController@edit'); //or
 # Process the form to edit a specific article
 Route::put('/wiki/{id}/{slug}', 'WikiController@update');
 
-
-
+# Search
+# Route for advanced search form - action
 # Search allows to filter the articles by category, subcategory, author/user
 # Future goal: allow seaching books and film catalog
 # The articles and books may have multiple authors;
 # The articles are attached to one user who published the content
 # In the future, I may need to add joined accounts,
 # so that multiple users can track the article views or book sales
-Route::get('/searchresults', 'FilterController@searchresults');
-// Route::get('/filter/{category?}/{subcategory?}/{uid}/{title?}'
-// or
-//Route::get('/search/{category?}/{subcategory?}/{author?}/{keyword?}', 'FilterController@search');
+Route::get('/searchresults', 'FilterController@advancedsearch');
+//Route::get('/search/{category?}/{subcategory?}/{title?}/{author?}/{keyword?}', 'FilterController@search');
 
 
 # Contact Form - future goal

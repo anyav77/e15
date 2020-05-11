@@ -108,17 +108,16 @@ class WikiController extends Controller
     public function update(Request $request, $id, $slug)
     {
         $article = Article::where('id', '=', $id)->first();
-
+        // validate the required fields
         $request->validate([
         'title' => 'required',
         'content' => 'required|min:255'
     ]);
-        // $article->id = $request->id;
-        // $article->slug = $request->slug;
+        // update the database
         $article->title = $request->title;
         $article->content = $request->content;
         $article->save();
-        dump($request);
+        // redirect back with confirmation message
         return redirect('/wiki/'.$id.'/'.$slug.'/edit')->with([
         'flash-alert' => 'Your changes were saved.'
     ]);
