@@ -16,11 +16,18 @@ Welcome to Educational Film Network!
     We welcome researchers and filmmakers to post content related to film studies.
 </p>
 <p>
-    Browser the wiki, or publish your article, book or film.
+    <a href='/wiki/'>Browse the wiki</a>, or <a href='/wiki/create'>publish your article</a>, promote your book or film.
 </p>
-<p>Search Wiki banner</p>
-<p>Publish Content banner</p>
-<p>What's new</p>
-<p>Recommended content - if logged in or visited</p>
+<h2>What's new</h2>
+<h3>Recently Published Articles</h3>
+<ul>
+    @foreach($newArticles as $article)
+    <li><a href='/wiki/{{ $article->id }}/{{ $article->slug }}'>{{ $article->title }} </a> </li>
+    @endforeach
+</ul>
+@if(count($articles)==0)
+No articles have been added yet...
+@endif
+<h3>Recommended for you</h3>
 <p>Register to get access to all the content</p>
 @endsection

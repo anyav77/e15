@@ -23,6 +23,11 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             // content TEXT
             $table->text('content');
+            // is_draft
+            // author and co-author id
+            // category_id
+            // comments  or contributions_id
+            // tags_id
         });
     }
 

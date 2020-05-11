@@ -9,33 +9,30 @@ Articles - Wiki
 
 @section('content')
 <h1>Wiki</h1>
-
-<p>Publish your article, promote your book or idea, or search the articles</p>
-<p>Recently Added</p>
-<p>Recently Viewed - Read history</p>
-<p>Saved articles</p>
-<p>Your Drafts</p>
-
-{{-- <div id='newBooks'>
-    <h2>Recently Added Books</h2>
-    <ul>
-        @foreach($newBooks as $book)
-        <li><a href='/books/{{ $book->slug }}'>{{ $book->title }}</a></li>
-@endforeach
-</ul>
-</div>
-
-@if(count($books) == 0)
-No books have been added yet...
-@else
-<div id='books'>
-    @foreach($books as $book)
-    <a class='book' href='/books/{{ $book->slug }}'>
-        <h3>{{ $book->title }}</h3>
-        <img class='cover' src='{{ $book->cover_url }}'>
-    </a>
-    </a>
+<p>Explore the collection of articles on film studies:</p>
+<p>Are you an instuctor, a subject matter expert or film enthusiast with a passion for writing?
+    <a href='/wiki/create'>Publish your article.</a> As
+    a published author, you can also promote your book or idea.</p>
+<p>Not ready to start writing? You can refer your friend or colleague.</p>
+<h2>Featured article</h2>
+<h2>Recently Published Articles</h2>
+<ul>
+    @foreach($newArticles as $article)
+    <li><a href='/wiki/{{ $article->id }}/{{ $article->slug }}'>{{ $article->title }}</a></li>
     @endforeach
-</div>
-@endif --}}
+</ul>
+@if(count($articles) == 0)
+No articles have been added yet...
+@else
+<h2>Recently Viewed - Read history</h2>
+<h2>Saved articles</h2>
+<h2>Your Drafts</h2>
+<h2>All Articles</h2>
+@foreach($articles as $article)
+<a href='/wiki/{{ $article->id }}/{{ $article->slug }}'>
+    <h3>{{ $article->title }}</h3>
+</a>
+@endforeach
+@endif
+{{-- add pagination --}}
 @endsection

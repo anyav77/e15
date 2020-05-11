@@ -29,7 +29,6 @@ No books have been added yet...
         <h3>{{ $book->title }}</h3>
         <img class='cover' src='{{ $book->cover_url }}'>
     </a>
-    </a>
     @endforeach
 </div>
 @endif

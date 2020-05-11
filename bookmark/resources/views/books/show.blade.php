@@ -29,6 +29,7 @@ Book not found. <a href='/books'>Check out the other books in our library...</a>
     <a href='{{ $book->info_url }}'>Learn more...</a>
 </p>
 
+{{-- change $books to user -> list --}}
 @if($books->count() == 0)
 <a class='btn btn-primary' href='/list/{{ $book->slug }}/add'>Add to your list</a>
 @else

@@ -17,18 +17,28 @@ Route::get('/search', 'FilterController@index');
 # Home
 Route::get('/wiki', 'WikiController@index');
 
-# Add Page
-// This route must comes before `/wiki/{uid}/{category?}/{subcategory?}/{title?}` so it takes precedence
+# Create Article
+// This route must comes before `/wiki/{id}/{slug}` so it takes precedence
 Route::get('/wiki/create', 'WikiController@create');
 Route::post('/wiki', 'WikiController@store');
 
-# View article page
-Route::get('/wiki/{uid}/{category?}/{subcategory?}/{title?}', 'WikiController@show');
+# View Article page
+Route::get('/wiki/{id}/{slug}', 'WikiController@show');
+
+# View Category page
+//Route::get('/wiki/{category}/{subcategory?}', 'WikiController@filter');
+// or
+//Route::get('/wiki/{category}/{subcategory?}', 'CategoryController@show');
+
 
 # Edit page
-//Route::get('/wiki/{id}/{title}/edit', 'WikiController@edit'); //or
-//Route::get('/wiki/{user}/{title}/edit', 'WikiController@edit'); //or
-//Route::post('/wiki', 'WikiController@store');
+# Show the form to edit a specific article
+Route::get('/wiki/{id}/{slug}/edit', 'WikiController@edit'); //or
+//Route::get('/wiki/{user}/{title}/edit', 'WikiController@edit');
+# Process the form to edit a specific article
+Route::put('/wiki/{id}/{slug}', 'WikiController@update');
+
+
 
 # Search allows to filter the articles by category, subcategory, author/user
 # Future goal: allow seaching books and film catalog
