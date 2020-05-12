@@ -31,7 +31,35 @@
                 <li><a href='/wiki/create'>Publish</a></li>
                 <li><a href='/about'>About</a></li>
                 <li><a href='/contact'>Contact</a></li>
-                <li class='login'><a href='/home'>Login</a></li>
+                <li>
+                    {{-- @if(!Auth::$user ?? '' )
+                    <a href='/login'>Login</a>
+                    @else
+                    <form method='POST' id='logout' action='/logout'>
+                        {{ csrf_field() }}
+                    <a href='#' onClick='document.getElementById("logout").submit();'>Logout</a>
+                    </form>
+                    @endif --}}
+                </li>
+                <!-- Authentication Links -->
+                @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                @if (Route::has('register'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+                @endif
+                @else
+                </li>
+                <li>
+                    <form method='POST' id='logout' action='/logout'>
+                        {{ csrf_field() }}
+                        <a href='#' onClick='document.getElementById("logout").submit();'>Logout</a>
+                    </form>
+                </li>
+                @endguest
                 <li><a href='/search'>Search</a></li>
             </ul>
         </nav>

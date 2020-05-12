@@ -34,15 +34,36 @@
                 <li><a href='/about'>About</a></li>
                 <li><a href='/contact'>Contact</a></li>
                 <li>
-                    @if(!Auth::user())
+
+                    {{-- @if(!Auth::$user ?? '' )
                     <a href='/login'>Login</a>
                     @else
                     <form method='POST' id='logout' action='/logout'>
                         {{ csrf_field() }}
+                    <a href='#' onClick='document.getElementById("logout").submit();'>Logout</a>
+                    </form>
+                    @endif --}}
+                </li>
+                <li>
+                    <!-- Authentication Links -->
+                    @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                @if (Route::has('register'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+                @endif
+                @else
+                </li>
+                <li>
+                    <form method='POST' id='logout' action='/logout'>
+                        {{ csrf_field() }}
                         <a href='#' onClick='document.getElementById("logout").submit();'>Logout</a>
                     </form>
-                    @endif
                 </li>
+                @endguest
                 <li><a href='/search'>Search</a></li>
             </ul>
         </nav>
