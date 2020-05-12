@@ -16,6 +16,10 @@ Route::get('/home', function () {
     VideoStreamer::streamFile($path);
 });
 
+#example wysiwyg editor
+Route::get('/example1', 'ExampleController@summernote');
+
+
 # testing database connecion
 
 Route::get('/debug', function () {
