@@ -7,6 +7,7 @@ use Arr;
 use Str;
 use App\Book;
 use App\Author;
+use App\Actions\Books\StoreNewBook;
 
 class BookController extends Controller
 {
@@ -49,18 +50,10 @@ class BookController extends Controller
         # and none of the code that follows will execute.
 
         # Add the book to the database
-        $newBook = new Book();
-        $newBook->slug = $request->slug;
-        $newBook->title = $request->title;
-        $newBook->author_id = $request->author_id;
-        $newBook->published_year = $request->published_year;
-        $newBook->cover_url = $request->cover_url;
-        $newBook->info_url = $request->info_url;
-        $newBook->purchase_url = $request->purchase_url;
-        $newBook->description = $request->description;
-        $newBook->save();
+        $action = new StoreNewBook((object) $request->all());
 
-        return redirect('/books/create')->with(['flash-alert' => 'Your book '.$newBook->title.' was added.']);
+        return redirect('/books/create')->with([
+            'flash-alert' => 'Your book '.$action->rda['title'].' was added.']);
     }
 
     /**

@@ -39,9 +39,6 @@ nav li{
     text-transform: uppercase;
     padding: 0 10px 0 0;
 }
-.login {
-    padding-left: 15px
-}
 nav li a {color: white; font-weight: 700; text-decoration: none;}
 nav li a:hover {color: #ccc; font-weight: 700; text-decoration: underline;}
 nav li a:hover {color: #ccc; font-weight: 700; text-decoration: none;}
@@ -188,3 +185,6 @@ footer {
     width: 100%; 
     background-color: black;
 }
+
+footer ul li{ display: inline;}
+

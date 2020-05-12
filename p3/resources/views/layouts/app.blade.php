@@ -31,40 +31,22 @@
                 <li><a href='/'>Home</a></li>
                 <li><a href='/wiki'>Wiki</a></li>
                 <li><a href='/wiki/create'>Publish</a></li>
-                <li><a href='/about'>About</a></li>
-                <li><a href='/contact'>Contact</a></li>
+                <li><a href='/search'>Search</a></li>
+                @if(Auth::user())
                 <li>
-
-                    {{-- @if(!Auth::$user ?? '' )
+                    <a href='/home'>Account</a>
+                </li>
+                @endif
+                <li>
+                    @if(!Auth::user())
                     <a href='/login'>Login</a>
                     @else
                     <form method='POST' id='logout' action='/logout'>
                         {{ csrf_field() }}
-                    <a href='#' onClick='document.getElementById("logout").submit();'>Logout</a>
-                    </form>
-                    @endif --}}
-                </li>
-
-                <!-- Authentication Links -->
-                @guest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-                @if (Route::has('register'))
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-                @endif
-                @else
-                </li>
-                <li>
-                    <form method='POST' id='logout' action='/logout'>
-                        {{ csrf_field() }}
                         <a href='#' onClick='document.getElementById("logout").submit();'>Logout</a>
                     </form>
+                    @endif
                 </li>
-                @endguest
-                <li><a href='/search'>Search</a></li>
             </ul>
         </nav>
     </header>
@@ -84,6 +66,26 @@
 
         <!-- Right Side Of Navbar -->
         <ul class="navbar-nav ml-auto">
+
+            <!-- Authentication Links -->
+            @guest
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+            </li>
+            @if (Route::has('register'))
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            </li>
+            @endif
+            @else
+            </li>
+            <li>
+                <form method='POST' id='logout' action='/logout'>
+                    {{ csrf_field() }}
+                    <a href='#' onClick='document.getElementById("logout").submit();'>Logout</a>
+                </form>
+            </li>
+            @endguest
             <!-- Authentication Links -->
             @guest
             <li class="nav-item">
@@ -121,6 +123,14 @@
     <main class="py-4">
         @yield('content')
     </main>
+    <footer>
+        <ul>
+            <li><a href='/about'>About</a></li>
+            <li><a href='/contact'>Contact</a></li>
+            <li>&copy; {{ date('Y') }}</li>
+        </ul>
+
+    </footer>
     </div>
 </body>
 
