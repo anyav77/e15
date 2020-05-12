@@ -44,9 +44,9 @@
                     </form>
                     @endif --}}
                 </li>
-                <li>
-                    <!-- Authentication Links -->
-                    @guest
+
+                <!-- Authentication Links -->
+                @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
