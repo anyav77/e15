@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
     {
         //
         $user = User::updateOrCreate(
-            ['email' => 'artistanya24@yahooo.com', 'first_name' => 'Annya', 'last_name' => 'Zinoveva', 'uid' => 'anyav77'],
+            ['email' => 'artistanya24@yahoo.com', 'first_name' => 'Annya', 'last_name' => 'Zinoveva', 'uid' => 'anyav77'],
             ['password' => Hash::make('helloworld')
         ]
         );

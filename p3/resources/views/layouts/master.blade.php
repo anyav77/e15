@@ -33,7 +33,7 @@
                 <li><a href='/contact'>Contact</a></li>
                 <li>
                     {{-- @if(!Auth::$user ?? '' )
-                    <a href='/login'>Login</a>
+                    <a href='/login'>Login Here</a>
                     @else
                     <form method='POST' id='logout' action='/logout'>
                         {{ csrf_field() }}
@@ -53,6 +53,7 @@
                 @endif
                 @else
                 </li>
+                <li><a href='/home'>Dashboard</a></li>
                 <li>
                     <form method='POST' id='logout' action='/logout'>
                         {{ csrf_field() }}
