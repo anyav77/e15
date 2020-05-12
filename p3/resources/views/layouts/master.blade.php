@@ -32,7 +32,7 @@
                 <li><a href='/about'>About</a></li>
                 <li><a href='/contact'>Contact</a></li>
                 <li>
-                    {{-- @if(!Auth::$user ?? '' )
+                    {{-- @if(!Auth::user())
                     <a href='/login'>Login Here</a>
                     @else
                     <form method='POST' id='logout' action='/logout'>

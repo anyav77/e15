@@ -38,9 +38,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     # Authorization login routes
     # I want to keep /home path, as a place for a future user dashboards
-    Auth::routes();
+
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
 # View Article
 Route::get('/wiki/{id}/{slug}', 'WikiController@show');
+Auth::routes();
