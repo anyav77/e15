@@ -31,6 +31,6 @@ No articles have been added yet...
 @if(Auth::user())
 <p><a href='/wiki/create'>Write an article</a></p>
 @else
-<p><a href='/login'>Register</a> to get access to all the content</p>
+<p><a href='/login' dusk='register-link'>Register</a> to get access to all the content</p>
 @endif
 @endsection

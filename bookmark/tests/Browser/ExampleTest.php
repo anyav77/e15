@@ -13,11 +13,11 @@ class ExampleTest extends DuskTestCase
      *
      * @return void
      */
-    public function testBasicExample()
+    public function testAddArticle()
     {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Welcome to Bookmark');
+        $this->browse(function ($first, $second) {
+            $first->loginAs(User::find(1))
+                  ->visit('/home');
         });
     }
 }

@@ -34,7 +34,7 @@ class ArticlesTableSeeder extends Seeder
             $title = $faker->words(rand(3, 6), true);
             $article->title = Str::title($title);
             $article->slug = Str::slug($title, '-');
-            $article->content = $faker->paragraphs(1, true);
+            $article->content = $faker->paragraphs(3, true);
         
             $article->save();
         }

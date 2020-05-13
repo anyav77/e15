@@ -33,7 +33,6 @@ class HomeController extends Controller
         foreach ($user->articles as $article) {
             $userArticles = $article->title;
         }
-        
         return view('home');
     }
 }

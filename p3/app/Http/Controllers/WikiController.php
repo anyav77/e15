@@ -17,17 +17,12 @@ class WikiController extends Controller
     {
         $articles = Article::orderBy('title')->get();
         $newArticles = $articles->sortByDesc('created_at')->take(3);
-
-        # Note how in sortByDesc we specify `pivot.created_at` to get the created_at value for the *relationship*, not the book itself
-        $userArticles = $request->user()->articles->sortByDesc('pivot.created_at');
         # return the home page content
         return view('wiki.index')->with([
             'articles' => $articles,
             'newArticles' => $newArticles,
-            'userArticles' => $userArticles,
         ]);
     }
-
     /**
     * GET /wiki/{id}/{slug}
     * Show the details for an individual book

@@ -17,7 +17,7 @@ Article not found. <a href='/books'>Check out the other articles in our library.
     {{ $article->content }}
 </p>
 <p>
-    <a class='btn btn-primary' href='/wiki/{{ $article->id }}/{{ $article->slug }}/edit'>Edit</a>
+    <a dusk='update-button' class='btn btn-primary' href='/wiki/{{ $article->id }}/{{ $article->slug }}/edit'>Edit</a>
 
 </p>
 
