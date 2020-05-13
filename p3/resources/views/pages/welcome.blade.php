@@ -28,6 +28,9 @@ Welcome to Educational Film Network!
 @if(count($articles)==0)
 No articles have been added yet...
 @endif
-<h3>Recommended for you</h3>
-<p>Register to get access to all the content</p>
+@if(Auth::user())
+<p><a href='/wiki/create'>Write an article</a></p>
+@else
+<p><a href='/login'>Register</a> to get access to all the content</p>
+@endif
 @endsection

@@ -13,14 +13,18 @@ class WikiController extends Controller
     * GET /wiki/
     * Show wiki home page with the articles info
     */
-    public function index()
+    public function index(Request $request)
     {
         $articles = Article::orderBy('title')->get();
         $newArticles = $articles->sortByDesc('created_at')->take(3);
+
+        # Note how in sortByDesc we specify `pivot.created_at` to get the created_at value for the *relationship*, not the book itself
+        $userArticles = $request->user()->articles->sortByDesc('pivot.created_at');
         # return the home page content
         return view('wiki.index')->with([
             'articles' => $articles,
-            'newArticles' => $newArticles
+            'newArticles' => $newArticles,
+            'userArticles' => $userArticles,
         ]);
     }
 
@@ -79,6 +83,10 @@ class WikiController extends Controller
         //$newBook->author_id = $request->author_id;
         $newArticle->content = $request->content;
         $newArticle->save();
+
+        # Add article to article_user table
+        # (i.e. create a new row in the article_user table)
+        $request->user()->articles()->save($newArticle, ['notes' => 'New article was published']);
 
         return redirect('/wiki')->with(['flash-alert' => 'Your article '.$newArticle->title.' has been published.']);
     }

@@ -23,9 +23,9 @@ Advanced Search
             {{ (old('searchType') == 'title' or $searchType=='title') ? 'checked' : ''}}>
         <label for='title'> Title</label>
 
-        <input type='radio' name='searchType' id='author' value='author'
+        {{-- <input type='radio' name='searchType' id='author' value='author'
             {{ (old('searchType') == 'author' or $searchType=='author') ? 'checked' : ''}}>
-        <label for='author'> Author</label>
+        <label for='author'> Author</label> --}}
 
     </fieldset>
     {{-- I need to add dropdowns for category and subcategory --}}

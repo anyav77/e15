@@ -14,8 +14,7 @@ Articles - Wiki
     <a href='/wiki/create'>Publish your article.</a> As
     a published author, you can also promote your book or idea.</p>
 <p>Not ready to start writing? You can refer your friend or colleague.</p>
-<h2>Featured article</h2>
-<h2>Recently Published Articles</h2>
+<h2>New Articles</h2>
 <ul>
     @foreach($newArticles as $article)
     <li><a href='/wiki/{{ $article->id }}/{{ $article->slug }}'>{{ $article->title }}</a></li>
@@ -24,9 +23,17 @@ Articles - Wiki
 @if(count($articles) == 0)
 No articles have been added yet...
 @else
-<h2>Recently Viewed - Read history</h2>
-<h2>Saved articles</h2>
-<h2>Your Drafts</h2>
+@if(Auth::user())
+<h2>Your Published Articles:</h2>
+@if(count($userArticles) == 0)
+You haven't published any articles.
+@endif
+<ul>
+    @foreach($userArticles as $article)
+    <li><a href='/wiki/{{ $article->id }}/{{ $article->slug }}'>{{ $article->title }}</a></li>
+    @endforeach
+</ul>
+@endif
 <h2>All Articles</h2>
 @foreach($articles as $article)
 <a href='/wiki/{{ $article->id }}/{{ $article->slug }}'>
@@ -34,5 +41,4 @@ No articles have been added yet...
 </a>
 @endforeach
 @endif
-{{-- add pagination --}}
 @endsection

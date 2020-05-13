@@ -21,10 +21,19 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         // this is where the authors and filmmakers can view stats fro their articles, manage drafts, upload vides
+        // return the list of articles publshed by the loged in user
 
+
+        $user = $request->user();
+
+        # Note how we can treate the `books` relationship as a dynamic propert ($user->books)
+        foreach ($user->articles as $article) {
+            $userArticles = $article->title;
+        }
+        
         return view('home');
     }
 }
