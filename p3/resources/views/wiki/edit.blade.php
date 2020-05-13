@@ -25,12 +25,7 @@ Edit Article
     <textarea name='content' rows='15'>{{ old('content', $article->content) }}</textarea>
     @include('includes.error-field', ['fieldName' => 'content'])
 
-    <label for='author2'>Co-Author</label>
-    <input type='text' name='author2' id='author2'>
-
-    <label for='category'>Select Category</label>
-    <label for='subcategory'>Select Subcategory</label>
     <input class='btn btn-primary' type='submit' value='Update you article'>
 </form>
-Save draft - do I want them to unpublish it?
+
 @endsection
