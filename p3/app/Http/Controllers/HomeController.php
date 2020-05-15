@@ -28,11 +28,10 @@ class HomeController extends Controller
 
 
         $user = $request->user();
+        $userArticles = $user->articles;
 
-        # Note how we can treate the `books` relationship as a dynamic propert ($user->books)
-        foreach ($user->articles as $article) {
-            $userArticles = $article->title;
-        }
-        return view('home');
+        return view('home')->with([
+            'userArticles' => $userArticles,
+        ]);
     }
 }

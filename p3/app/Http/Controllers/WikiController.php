@@ -15,12 +15,24 @@ class WikiController extends Controller
     */
     public function index(Request $request)
     {
+        $user = $request->user();
+        $userArticles = $user->articles;
+        //specify a condition if user is null - not logged in
+        if ($user==null) {
+            $userArticles = 0;
+        }
+        //$userArticles = $user->articles; // returns error: Trying to get property 'articles' of non-object
+        dump($user); //return null if user is logged out
+        dump($userArticles); //throws an error if the user is logged out: Trying to get property 'articles' of non-object
+
+
         $articles = Article::orderBy('title')->get();
         $newArticles = $articles->sortByDesc('created_at')->take(3);
         # return the home page content
         return view('wiki.index')->with([
             'articles' => $articles,
             'newArticles' => $newArticles,
+            //'userArticles' => $userArticles,
         ]);
     }
     /**

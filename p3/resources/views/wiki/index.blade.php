@@ -25,6 +25,18 @@ No articles have been added yet...
 @else
 
 
+{{-- @if(Auth::user())
+<h2>Your Articles</h2>
+<ul>
+    @foreach($userArticles as $article)
+    <li><a href='/wiki/{{ $article->id }}/{{ $article->slug }}'>{{ $article->title }}</a></li>
+@endforeach
+</ul>
+@if(count($userArticles) == 0)
+You haven't published any articles
+@endif
+@endif --}}
+
 <h2>All Articles</h2>
 @foreach($articles as $article)
 <a href='/wiki/{{ $article->id }}/{{ $article->slug }}'>

@@ -25,6 +25,10 @@
                         {{-- @foreach($userArticles as $article)
                         <li>{{ $article}}</li>
                         @endforeach --}}
+
+                        @foreach($userArticles as $article)
+                        <li>{{ $article->title }}</li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
